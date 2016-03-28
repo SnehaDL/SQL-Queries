@@ -1,0 +1,1318 @@
+ CREATE TABLE CUSTOMER(CUST NUMBER(5)
+ CNAME VARCHAR2(7),CITY VARCHAR2(5),
+ PRIMARY KEY(CUST));
+TE TABLE CUSTOMER(CUST NUMBER(5)
+                 *
+R at line 1:
+00922: missing or invalid option
+
+
+ CREATE TABLE CUSTOMER(CUST NUMBER(5),
+ CNAME VARCHAR2(7),CITY VARCHAR2(5),
+ PRIMARY KEY(CUST));
+
+e created.
+
+ CREATE TABLE ORDER1(ORDER NUMBER(5),
+ KIK
+ LP[P-L
+ ]';
+TE TABLE ORDER1(ORDER NUMBER(5),
+                *
+R at line 1:
+00904: invalid column name
+
+
+  CREATE TABLE ORDER1(ORDER  NUMBER(5),
+ ODATE DATE,CUST NUMBER(5),
+ ORDAMT NUMBER(4));
+ATE TABLE ORDER1(ORDER  NUMBER(5),
+                 *
+R at line 1:
+00904: invalid column name
+
+
+ CREATE TABLE ORDER1(ORDER NUMBER(5),
+ ODATE DATE,CUST NUMBER(5),
+ ORDAMT NUMBER(4));
+TE TABLE ORDER1(ORDER NUMBER(5),
+                *
+R at line 1:
+00904: invalid column name
+
+
+ CREATE TABLE ORDER1(ORD NUMBER(5),
+  ODATE DATE,CUST NUMBER(5),
+  ORDAMT NUMBER(4));
+
+e created.
+
+ CREATE TABLE ITEM(CREATE TABLE ORDER1(ORDER NUMBER(5)
+ ODATE DATE,CUST NUMBER(5),
+ [=P
+ ;
+TE TABLE ITEM(CREATE TABLE ORDER1(ORDER NUMBER(5)
+              *
+R at line 1:
+00904: invalid column name
+
+
+ CREATE TABLE ORDER(ORD NUMBER(5),
+  ODATE DATE,CUST NUMBER(5),
+  ORDAMT NUMBER(4));
+TE TABLE ORDER(ORD NUMBER(5),
+         *
+R at line 1:
+00903: invalid table name
+
+
+  CREATE TABLE ORDER5(ORD NUMBER(5),
+  ODATE DATE,CUST NUMBER(5),
+  ORDAMT NUMBER(4));
+
+e created.
+
+ CREATE TABLE ORDER6(ORD NUMBER(5),
+  ODATE DATE,CUST NUMBER(5),
+  ORDAMT NUMBER(4),
+ PRIMARY KEY(ORD));
+
+e created.
+
+  CREATE TABLE ITEM(ITEMNO NUMBER(10),
+ UPRICE NUMBER(10), 
+ PRIMARY KEY(ITEMNO));
+
+e created.
+
+ CREATE TABLE ORDER7(ORD NUMBER(5),
+ ODATE DATE,CUST NUMBER(5),ORDAMT NUMBER(5),
+ PRIMARY KEY(ORD),FOREIGN KEY(CUST) REFERENCES CUSTOMER(CUST));
+
+e created.
+
+ CREATE TABLE ORDER_ITEM(ORD NUMBER(5),
+ REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,QTY,
+ PRIMARY KEY(ORD),FOREIGN KEY(ORD) KJOIJ.;PLO;
+RENCES ITEM(ITEMNO) ON DELETE CASCADE,QTY,
+           *
+R at line 2:
+00907: missing right parenthesis
+
+
+ CREATE TABLE ORDER_ITEM(ITEM NO NUMBER(5)
+  REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+ ORD NUMBER(5),QTY NUMBER(5),
+ PRIMARY KEY(ORD),FOREIGN KEY(ORD) REFERNCES ORDER7(ORD));
+TE TABLE ORDER_ITEM(ITEM NO NUMBER(5)
+                            *
+R at line 1:
+00907: missing right parenthesis
+
+
+  CREATE TABLE ORDER_ITEM(ITEMNO NUMBER(5)
+  REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+ ORD NUMBER(5),QTY NUMBER(5),
+ PRIMARY KEY(ORD),FOREIGN KEY(ORD) REFERNCES ORDER7(ORD));
+ARY KEY(ORD),FOREIGN KEY(ORD) REFERNCES ORDER7(ORD))
+                              *
+R at line 4:
+00905: missing keyword
+
+
+ CREATE TABLE ORDER_ITEM(ITEMNO NUMBER(5)
+ QL> CREATE TABLE CUSTOMER(CUST NUMBER(5)
+  2  CNAME VARCHAR2(7),CITY VARCHAR2(5),
+  3  PRIMARY KEY(CUST));
+TE TABLE ORDER_ITEM(ITEMNO NUMBER(5)
+                   *
+R at line 1:
+00922: missing or invalid option
+
+
+ REATE TABLE CUSTOMER(CUST NUMBER(5)
+0042: unknown command beginning "REATE TABL..." - rest of line ignored.
+                     *
+0226: Invalid line number
+ RROR at line 1:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00922: missing or invalid option
+0042: unknown command beginning "RA-00922: ..." - rest of line ignored.
+ 
+ 
+ QL> CREATE TABLE CUSTOMER(CUST NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+  2  CNAME VARCHAR2(7),CITY VARCHAR2(5),
+  3  PRIMARY KEY(CUST));
+ 
+ able created.
+0042: unknown command beginning "able creat..." - rest of line ignored.
+ 
+ QL> CREATE TABLE ORDER1(ORDER NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2  KIK
+  3  LP[P-L
+  4  ]';
+ REATE TABLE ORDER1(ORDER NUMBER(5),
+0042: unknown command beginning "REATE TABL..." - rest of line ignored.
+                    *
+0226: Invalid line number
+ RROR at line 1:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+ RA-00904: invalid column name
+0042: unknown command beginning "RA-00904: ..." - rest of line ignored.
+ 
+ 
+ QL>  CREATE TABLE ORDER1(ORDER  NUMBER(5),
+0042: unknown command beginning "QL>        CREAT..." - rest of line ignored.
+  2  ODATE DATE,CUST NUMBER(5),
+  3  ORDAMT NUMBER(4));
+ CREATE TABLE ORDER1(ORDER  NUMBER(5),
+                     *
+ RROR at line 1:
+ RA-00904: invalid column name
+ 
+ 
+ QL> CREATE TABLE ORDER1(ORDER NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2  ODATE DATE,CUST NUMBER(5),
+  3  ORDAMT NUMBER(4));
+ REATE TABLE ORDER1(ORDER NUMBER(5),
+0042: unknown command beginning "REATE TABL..." - rest of line ignored.
+                    *
+0226: Invalid line number
+ RROR at line 1:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00904: invalid column name
+0042: unknown command beginning "RA-00904: ..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+ 
+ 
+ QL> CREATE TABLE ORDER1(ORD NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2   ODATE DATE,CUST NUMBER(5),
+  3   ORDAMT NUMBER(4));
+ 
+ able created.
+0042: unknown command beginning "able creat..." - rest of line ignored.
+ 
+ QL> CREATE TABLE ITEM(CREATE TABLE ORDER1(ORDER NUMBER(5)
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2  ODATE DATE,CUST NUMBER(5),
+  3  [=P
+  4  ;
+ RA-00904: invalid column name
+ REATE TABLE ITEM(CREATE TABLE ORDER1(ORDER NUMBER(5)
+0042: unknown command beginning "REATE TABL..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+                  *
+0226: Invalid line number
+ RROR at line 1:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00904: invalid column name
+0042: unknown command beginning "RA-00904: ..." - rest of line ignored.
+ 
+ 
+ QL> CREATE TABLE ORDER(ORD NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2   ODATE DATE,CUST NUMBER(5),
+  3   ORDAMT NUMBER(4));
+ REATE TABLE ORDER(ORD NUMBER(5),
+0042: unknown command beginning "REATE TABL..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+             *
+0226: Invalid line number
+ RROR at line 1:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00903: invalid table name
+0042: unknown command beginning "RA-00903: ..." - rest of line ignored.
+ 
+ 
+ QL>  CREATE TABLE ORDER5(ORD NUMBER(5),
+0042: unknown command beginning "QL>        CREAT..." - rest of line ignored.
+  2   ODATE DATE,CUST NUMBER(5),
+  3   ORDAMT NUMBER(4));
+ 
+ able created.
+0042: unknown command beginning "able creat..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+ 
+ QL> CREATE TABLE ORDER6(ORD NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2   ODATE DATE,CUST NUMBER(5),
+  3   ORDAMT NUMBER(4),
+  4  PRIMARY KEY(ORD));
+ 
+ able created.
+0042: unknown command beginning "able creat..." - rest of line ignored.
+ 
+ QL>  CREATE TABLE ITEM(ITEMNO NUMBER(10),
+0042: unknown command beginning "QL>        CREAT..." - rest of line ignored.
+  2  UPRICE NUMBER(10), 
+  3  PRIMARY KEY(ITEMNO));
+ 
+ able created.
+0042: unknown command beginning "able creat..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+ 
+ QL> CREATE TABLE ORDER7(ORD NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2  ODATE DATE,CUST NUMBER(5),ORDAMT NUMBER(5),
+  3  PRIMARY KEY(ORD),FOREIGN KEY(CUST) REFERENCES CUSTOMER(CUST));
+ 
+ able created.
+0042: unknown command beginning "able creat..." - rest of line ignored.
+ 
+ QL> CREATE TABLE ORDER_ITEM(ORD NUMBER(5),
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2  REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,QTY,
+  3  PRIMARY KEY(ORD),FOREIGN KEY(ORD) KJOIJ.;PLO;
+ EFERENCES ITEM(ITEMNO) ON DELETE CASCADE,QTY,
+0042: unknown command beginning "EFERENCES ..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+               *
+0226: Invalid line number
+ RROR at line 2:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00907: missing right parenthesis
+0042: unknown command beginning "RA-00907: ..." - rest of line ignored.
+ 
+ 
+ QL> CREATE TABLE ORDER_ITEM(ITEM NO NUMBER(5)
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2   REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  3  ORD NUMBER(5),QTY NUMBER(5),
+  4  PRIMARY KEY(ORD),FOREIGN KEY(ORD) REFERNCES ORDER7(ORD));
+ REATE TABLE ORDER_ITEM(ITEM NO NUMBER(5)
+0042: unknown command beginning "REATE TABL..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+                                *
+0226: Invalid line number
+ RROR at line 1:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00907: missing right parenthesis
+0042: unknown command beginning "RA-00907: ..." - rest of line ignored.
+ 
+ 
+ QL>  CREATE TABLE ORDER_ITEM(ITEMNO NUMBER(5)
+0042: unknown command beginning "QL>        CREAT..." - rest of line ignored.
+  2   REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  3  ORD NUMBER(5),QTY NUMBER(5),
+  4  PRIMARY KEY(ORD),FOREIGN KEY(ORD) REFERNCES ORDER7(ORD));
+ RIMARY KEY(ORD),FOREIGN KEY(ORD) REFERNCES ORDER7(ORD))
+0042: unknown command beginning "RIMARY KEY..." - rest of line ignored.
+0044: For a list of known commands enter HELP
+to leave enter EXIT.
+                                  *
+0226: Invalid line number
+ RROR at line 4:
+0042: unknown command beginning "RROR at li..." - rest of line ignored.
+ RA-00905: missing keyword
+0042: unknown command beginning "RA-00905: ..." - rest of line ignored.
+ 
+ 
+ QL> CREATE TABLE ORDER_ITEM(ITEMNO NUMBER(5)
+0042: unknown command beginning "QL> CREATE..." - rest of line ignored.
+  2  
+SQL>  CREATE TABLE ORDER_ITEM1(ITEMNO NUMBER(5)
+  2   REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  3   ORD NUMBER(5),QTY NUMBER(5),
+  4   PRIMARY KEY(ORD,ITEMNO),
+  5   FOERIGN KEY(ORD) REFERNCES ORDER7(ORD));
+ FOERIGN KEY(ORD) REFERNCES ORDER7(ORD))
+            *
+ERROR at line 5:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE ORDER_ITEM1(ITEMNO NUMBER(5)
+  2  REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  3  ORD NUMBER(5) REFERNCES ORDER7(ORD),QTY NUMBER(5),
+  4  PRIMARY KEY(ORD,ITEMNO)0;
+CREATE TABLE ORDER_ITEM1(ITEMNO NUMBER(5)
+                        *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL> CREATE TABLE ORDER_ITEM1(ITEMNO NUMBER(5)
+  2  REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  3  ORD NUMBER(5) REFERNCES ORDER7(ORD),QTY NUMBER(5),
+  4   PRIMARY KEY(ORD,ITEMNO));
+CREATE TABLE ORDER_ITEM1(ITEMNO NUMBER(5)
+                        *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL>  CREATE TABLE ORDER_ITEM1(ORD NUMBER(5) REFERNCES ORDER7(ORD),
+  2  ITEMNO NUMBER(5) REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  3  QTY NUMBER(5),PRIMARY KEY(ORD,ITEMNO));
+ CREATE TABLE ORDER_ITEM1(ORD NUMBER(5) REFERNCES ORDER7(ORD),
+                         *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL>  CREATE TABLE ORDERITEM(ORD NUMBER(5)
+  2  REFERNCES ORDER7(ORD),
+  3  ITEMNO NUMBER(5)
+  4   REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  5  QTY NUMBER(5),PRIMARY KEY(ORD,ITEMNO));
+ CREATE TABLE ORDERITEM(ORD NUMBER(5)
+                       *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL> DESC ORDER7;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORD                                                   NOT NULL NUMBER(5)
+ ODATE                                                          DATE
+ CUST                                                           NUMBER(5)
+ ORDAMT                                                         NUMBER(5)
+
+SQL>  CREATE TABLE ORDERITEM(ORD NUMBER(5)
+  2  REFERENCES ORDER7(ORD),
+  3  ITEMNO NUMBER(5)
+  4   REFERENCES ITEM(ITEMNO) ON DELETE CASCADE,
+  5  QTY NUMBER(5),PRIMARY KEY(ORD,ITEMNO));
+
+Table created.
+
+SQL> INSERT INTO WAREHOUSE VALUES(&WAREHOUSE,'&CITY');
+Enter value for warehouse: 111
+Enter value for city: BLORE
+old   1: INSERT INTO WAREHOUSE VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE VALUES(111,'BLORE')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 222
+Enter value for city: WERSE
+old   1: INSERT INTO WAREHOUSE VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE VALUES(222,'WERSE')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 333
+Enter value for city: FRNC
+old   1: INSERT INTO WAREHOUSE VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE VALUES(333,'FRNC')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 444
+Enter value for city: RAIPR
+old   1: INSERT INTO WAREHOUSE VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE VALUES(444,'RAIPR')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 555
+Enter value for city: REWF
+old   1: INSERT INTO WAREHOUSE VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE VALUES(555,'REWF')
+
+1 row created.
+
+SQL> DESC WAREHOUSE;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ WAREHOUSE                                             NOT NULL NUMBER(5)
+ CITY                                                           VARCHAR2(5)
+
+SQL> DESC WAREHOUSE1;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ WAREHOUSE                                             NOT NULL NUMBER(5)
+ CITY                                                           VARCHAR2(5)
+
+SQL> INSERT INTO WAREHOUSE1 VALUES(&WAREHOUSE,'&CITY');
+Enter value for warehouse: 1111
+Enter value for city: WEQ
+old   1: INSERT INTO WAREHOUSE1 VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE1 VALUES(1111,'WEQ')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 2222
+Enter value for city: WQER
+old   1: INSERT INTO WAREHOUSE1 VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE1 VALUES(2222,'WQER')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 3333
+Enter value for city: CDE
+old   1: INSERT INTO WAREHOUSE1 VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE1 VALUES(3333,'CDE')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 4444
+Enter value for city: BLORE
+old   1: INSERT INTO WAREHOUSE1 VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE1 VALUES(4444,'BLORE')
+
+1 row created.
+
+SQL> /
+Enter value for warehouse: 5555
+Enter value for city: DERS
+old   1: INSERT INTO WAREHOUSE1 VALUES(&WAREHOUSE,'&CITY')
+new   1: INSERT INTO WAREHOUSE1 VALUES(5555,'DERS')
+
+1 row created.
+
+SQL> DESC SHIPMENT1;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORD                                                   NOT NULL NUMBER(5)
+ WAREHOUSE                                             NOT NULL NUMBER(5)
+ SHIPDATE                                                       DATE
+
+SQL> INSERT INTO SHIPMENT VALUES(&ORD,
+  2  &WAREHOUSE,'&SHIPDATE'):
+  3  KNEILK
+  4  C KF;
+Enter value for ord: FFJM 
+old   1: INSERT INTO SHIPMENT VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT VALUES(FFJM ,
+Enter value for warehouse: CMDNLK
+Enter value for shipdate: CM,KL;S
+old   2: &WAREHOUSE,'&SHIPDATE'):
+new   2: CMDNLK,'CM,KL;S'):
+SP2-0552: Bind variable "KNEILK" not declared.
+SQL> INSERT INTO SHIPMENT VALUES(&ORD,&WAREHOUSE,'&SHIPDATE');
+Enter value for ord: 11
+Enter value for warehouse: 1111
+Enter value for shipdate: 09-JAN-08
+old   1: INSERT INTO SHIPMENT VALUES(&ORD,&WAREHOUSE,'&SHIPDATE')
+new   1: INSERT INTO SHIPMENT VALUES(11,1111,'09-JAN-08')
+INSERT INTO SHIPMENT VALUES(11,1111,'09-JAN-08')
+            *
+ERROR at line 1:
+ORA-01401: inserted value too large for column
+
+
+SQL> INSERT INTO SHIPMENT VALUES(&ORD,
+  2  &WAREHOUSE,'&SHIPDATE');
+Enter value for ord: 11
+old   1: INSERT INTO SHIPMENT VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT VALUES(11,
+Enter value for warehouse: 1111
+Enter value for shipdate: 09-JAN-09
+old   2: &WAREHOUSE,'&SHIPDATE')
+new   2: 1111,'09-JAN-09')
+INSERT INTO SHIPMENT VALUES(11,
+            *
+ERROR at line 1:
+ORA-01401: inserted value too large for column
+
+
+SQL> IINSERT INTO SHIPMENT1 VALUES(&ORD,
+SP2-0042: unknown command beginning "IINSERT IN..." - rest of line ignored.
+SQL> INSERT INTO SHIPMENT1 VALUES(&ORD,
+  2   &WAREHOUSE,'&SHIPDATE');
+Enter value for ord: 11
+old   1: INSERT INTO SHIPMENT1 VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT1 VALUES(11,
+Enter value for warehouse: 1111
+Enter value for shipdate: 10-JAN-09
+old   2:  &WAREHOUSE,'&SHIPDATE')
+new   2:  1111,'10-JAN-09')
+
+1 row created.
+
+SQL> /
+Enter value for ord: 22
+old   1: INSERT INTO SHIPMENT1 VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT1 VALUES(22,
+Enter value for warehouse: 2222
+Enter value for shipdate: 08-JAN-07
+old   2:  &WAREHOUSE,'&SHIPDATE')
+new   2:  2222,'08-JAN-07')
+
+1 row created.
+
+SQL> /
+Enter value for ord: 33
+old   1: INSERT INTO SHIPMENT1 VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT1 VALUES(33,
+Enter value for warehouse: 3333
+Enter value for shipdate: 07-FEB-07
+old   2:  &WAREHOUSE,'&SHIPDATE')
+new   2:  3333,'07-FEB-07')
+
+1 row created.
+
+SQL> /
+Enter value for ord: 44
+old   1: INSERT INTO SHIPMENT1 VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT1 VALUES(44,
+Enter value for warehouse: 4444
+Enter value for shipdate: 06-JAN-06
+old   2:  &WAREHOUSE,'&SHIPDATE')
+new   2:  4444,'06-JAN-06')
+
+1 row created.
+
+SQL> /
+Enter value for ord: 55
+old   1: INSERT INTO SHIPMENT1 VALUES(&ORD,
+new   1: INSERT INTO SHIPMENT1 VALUES(55,
+Enter value for warehouse: 5555
+Enter value for shipdate: 03-JAN-03
+old   2:  &WAREHOUSE,'&SHIPDATE')
+new   2:  5555,'03-JAN-03')
+
+1 row created.
+
+SQL> DESC CUSTOMER;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CUST                                                  NOT NULL NUMBER(5)
+ CNAME                                                          VARCHAR2(7)
+ CITY                                                           VARCHAR2(5)
+
+SQL> SELECT CNAME,COUNT(ORD),AVG(ORDAMT)
+  2  FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7,CUST);
+FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7,CUST)
+                                        *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> SELECT CNAME,COUNT(ORD),AVG(ORDAMT)
+  2  FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7.CUST);
+SELECT CNAME,COUNT(ORD),AVG(ORDAMT)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> DESC ORDER7;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORD                                                   NOT NULL NUMBER(5)
+ ODATE                                                          DATE
+ CUST                                                           NUMBER(5)
+ ORDAMT                                                         NUMBER(5)
+
+SQL> > SELECT CNAME,COUNT(ORD),AVG(ORDAMT)
+SP2-0042: unknown command beginning "> SELECT C..." - rest of line ignored.
+SQL>   FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7.CUST)
+SP2-0042: unknown command beginning "FROM CUSTO..." - rest of line ignored.
+SQL> SELECT CNAME,COUNT(ORD),AVG(ORDAMT)
+  2  FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7,CUST)
+  3  GROUP BY CNAME;
+FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7,CUST)
+                                        *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> SELECT CNAME,COUNT(ORD),AVG(ORDAMT)
+  2  FROM CUSTOMER,ORDER7 WHERE(CUSTOMER.CUST=ORDER7.CUST)
+  3   GROUP BY CNAME;
+
+CNAME   COUNT(ORD) AVG(ORDAMT)
+------- ---------- -----------
+chun             1       60000
+raagi            1       50000
+shiny            1       20000
+tarun            1       30000
+vandan           1       40000
+
+SQL> SELECT ORD FROM SHIPMENT1,
+  2  WAREHOUSEN WHERE (SHIPMENT1.WAREHOUSE
+  3  =WAREHOUSE1.WAREHOUSE AND WAREHOUSE.CITY='RDGY'):
+  4  ,O;K
+  5  KMOK;
+=WAREHOUSE1.WAREHOUSE AND WAREHOUSE.CITY='RDGY'):
+                                                *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT * FROM SHIPMENT1;
+
+      ORD WAREHOUSE SHIPDATE
+--------- --------- ---------
+       11      1111 10-JAN-09
+       22      2222 08-JAN-07
+       33      3333 07-FEB-07
+       44      4444 06-JAN-06
+       55      5555 03-JAN-03
+
+SQL> SELECT * FROM WAREHOUSE1;
+
+WAREHOUSE CITY
+--------- -----
+     1111 WEQ
+     2222 WQER
+     3333 CDE
+     4444 BLORE
+     5555 DERS
+
+SQL>  SELECT ORD FROM SHIPMENT1,
+  2   WAREHOUSE1 WHERE (SHIPMENT1.WAREHOUSE
+  3  WAREHOUSE1.WAREHOUSE AND WAREHOUSE.CITY='WEQ');
+WAREHOUSE1.WAREHOUSE AND WAREHOUSE.CITY='WEQ')
+*
+ERROR at line 3:
+ORA-00920: invalid relational operator
+
+
+SQL> SELECT ORD FROM SHIPMENT1,
+  2  WAREHOUSE1 WHERE (SHIPMENT1.WAREHOUSE=
+  3  WAREHOUSE1.WAREHOUSE AND WAREHOUSE.CITY='WEQ');
+WAREHOUSE1.WAREHOUSE AND WAREHOUSE.CITY='WEQ')
+                                   *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL>  SELECT ORD FROM SHIPMENT1,
+  2    WAREHOUSE1 WHERE (SHIPMENT1.WAREHOUSE=
+  3  WAREHOUSE1.WAREHOUSE AND WAREHOUSE1.CITY='WEQ');
+
+      ORD
+---------
+       11
+
+SQL> SELECT * FROM ITEM;
+
+   ITEMNO    UPRICE
+--------- ---------
+       10     10000
+       20    200000
+       30    300000
+       40     40000
+
+SQL> DELETE FROM ITEM WHERE ITEMNO=20;
+
+1 row deleted.
+
+SQL> SELECT * FROM ITEM;
+
+   ITEMNO    UPRICE
+--------- ---------
+       10     10000
+       30    300000
+       40     40000
+
+SQL> SELECT * FROM ORDER_ITEM;
+
+no rows selected
+
+SQL> SELECT * FROM ORDER_ITEM1;
+SELECT * FROM ORDER_ITEM1
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> DESC OREDERITEM;
+ERROR:
+ORA-04043: object OREDERITEM does not exist
+
+
+SQL> DESC ORDER_ITEM1;
+ERROR:
+ORA-04043: object ORDER_ITEM1 does not exist
+
+
+SQL> DESC ORDER_ITEM;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ITEMNO                                                         NUMBER(5)
+ ORD                                                   NOT NULL NUMBER(5)
+ QTY                                                            NUMBER(5)
+
+SQL> SELECT * FROM ORDER_ITEM;
+
+no rows selected
+
+SQL> SELECT * FROM ITEM;
+
+   ITEMNO    UPRICE
+--------- ---------
+       10     10000
+       30    300000
+       40     40000
+
+SQL> INSERT INTO ORDER_ITEM VALUES(&ORD,&ITEM,&QTY);
+Enter value for ord: INSERT INTO ORDER_ITEM VALUES(&ORD,&ITEMJI\
+Enter value for item: LKO
+Enter value for qty: L;PL
+old   1: INSERT INTO ORDER_ITEM VALUES(&ORD,&ITEM,&QTY)
+new   1: INSERT INTO ORDER_ITEM VALUES(INSERT INTO ORDER_ITEM VALUES(&ORD,&ITEMJI\,LKO,L;PL)
+SP2-0552: Bind variable "ITEMJI" not declared.
+SQL> INSERT INTO ORDER_ITEM VALUES(&ORD,&ITEMNO,&QTY);
+Enter value for ord: 11
+Enter value for itemno: 10
+Enter value for qty: 23456
+old   1: INSERT INTO ORDER_ITEM VALUES(&ORD,&ITEMNO,&QTY)
+new   1: INSERT INTO ORDER_ITEM VALUES(11,10,23456)
+INSERT INTO ORDER_ITEM VALUES(11,10,23456)
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C004225) violated - parent key not found
+
+
+SQL> SELECT * FROM ORDER7;
+
+      ORD ODATE          CUST    ORDAMT
+--------- --------- --------- ---------
+       11 11-JAN-08         1     20000
+       22 22-JAN-09         2     30000
+       33 10-FEB-08         3     40000
+       44 12-MAR-07         4     50000
+       55 08-APR-08         5     60000
+
+SQL> DESC ORDER_ITEM1;
+ERROR:
+ORA-04043: object ORDER_ITEM1 does not exist
+
+
+SQL> DESC ORDER_ITEM;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ITEMNO                                                         NUMBER(5)
+ ORD                                                   NOT NULL NUMBER(5)
+ QTY                                                            NUMBER(5)
+
+SQL> DESC ORDERITEM;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORD                                                   NOT NULL NUMBER(5)
+ ITEMNO                                                NOT NULL NUMBER(5)
+ QTY                                                            NUMBER(5)
+
+SQL> SELECT * FROM ORDERITEM;
+
+no rows selected
+
+SQL> INSERT INTO ORDERITEM VALUES(&ORD,&ITEMNO,&QTY);
+Enter value for ord: 11
+Enter value for itemno: 10
+Enter value for qty: 2345
+old   1: INSERT INTO ORDERITEM VALUES(&ORD,&ITEMNO,&QTY)
+new   1: INSERT INTO ORDERITEM VALUES(11,10,2345)
+
+1 row created.
+
+SQL> /
+Enter value for ord: 22
+Enter value for itemno: 20
+Enter value for qty: 2134
+old   1: INSERT INTO ORDERITEM VALUES(&ORD,&ITEMNO,&QTY)
+new   1: INSERT INTO ORDERITEM VALUES(22,20,2134)
+INSERT INTO ORDERITEM VALUES(22,20,2134)
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C004333) violated - parent key not found
+
+
+SQL> /
+Enter value for ord: 33
+Enter value for itemno: 30
+Enter value for qty: 34576889
+old   1: INSERT INTO ORDERITEM VALUES(&ORD,&ITEMNO,&QTY)
+new   1: INSERT INTO ORDERITEM VALUES(33,30,34576889)
+INSERT INTO ORDERITEM VALUES(33,30,34576889)
+                                   *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allows for this column
+
+
+SQL> /
+Enter value for ord: 33
+Enter value for itemno: 30
+Enter value for qty: 213
+old   1: INSERT INTO ORDERITEM VALUES(&ORD,&ITEMNO,&QTY)
+new   1: INSERT INTO ORDERITEM VALUES(33,30,213)
+
+1 row created.
+
+SQL> /
+Enter value for ord: 33
+Enter value for itemno: 40
+Enter value for qty: 980
+old   1: INSERT INTO ORDERITEM VALUES(&ORD,&ITEMNO,&QTY)
+new   1: INSERT INTO ORDERITEM VALUES(33,40,980)
+
+1 row created.
+
+SQL> SELECT * FROM ORDERITEM;
+
+      ORD    ITEMNO       QTY
+--------- --------- ---------
+       11        10      2345
+       33        30       213
+       33        40       980
+
+SQL> DELETE FROM ITEM WHERE ITEMNO=40;
+
+1 row deleted.
+
+SQL> SELECT * FROM ITEM;
+
+   ITEMNO    UPRICE
+--------- ---------
+       10     10000
+       30    300000
+
+SQL> SELECT * FROM ORDERITEM;
+
+      ORD    ITEMNO       QTY
+--------- --------- ---------
+       11        10      2345
+       33        30       213
+
+SQL> TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN
+string beginning "'SHIPMENT ..." missing terminating quote (').
+SQL> TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOPUSE1 TABLE';
+SQL> BTITLE 'BYE';
+SQL> COLUMN WAREHOUSE HEADING 'WAREHOUSE|NO:';
+SQL> COLUMN CITY HEADING 'WAREHOUSE|CITY:';
+SQL> COLUMN ORD HEADING 'ORDER|NUMBR:';
+SQL> COLUMN SHIPDATE HEADING 'SHIPDATE:';
+SQL> BREAK ON SHIPDATE;
+SQL> SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHOUSE=SHIPMEN
+T1.WAREHOUSE AND  WAREHOUSE1.CITY='RDGY';
+SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHOUSE=SHIPMENT1.WA
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> SELECT * FROM WAREHOUSE1;
+
+Sat Oct 10                                                                                 page    1
+                                       SHIPMENT AND WAREHOUSE
+                             GIVEN FROM SHIPMENT1 AND WAREHOPUSE1 TABLE
+
+WAREHOUSE WAREH
+      NO: CITY:
+--------- -----
+     1111 WEQ
+     2222 WQER
+     3333 CDE
+     4444 BLORE
+     5555 DERS
+
+
+
+
+
+
+
+
+
+
+                                                BYE
+
+SQL> TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOPUSE1 TABLE';
+SQL> BTITLE 'BYE';
+SQL> COLUMN WAREHOUSE HEADING 'WAREHOUSE|NO:';
+SQL> COLUMN CITY HEADING 'WAREHOUSE|CITY:';
+SQL> COLUMN ORD HEADING 'ORDER|NUMBR:';
+SQL> COLUMN SHIPDATE HEADING 'SHIPDATE:';
+SQL> BREAK ON SHIPDATE;
+SQL> SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHOUSE=SHIPMEN
+T1.WAREHOUSE AND  WAREHOUSE1.CITY='WEQ';
+SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHOUSE=SHIPMENT1.WA
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> TITLE OFF;
+SP2-0042: unknown command "TITLE OFF" - rest of line ignored.
+SQL> TTITLE OFF;
+SQL> BTITLE OFF;
+SQL> SELECT * FROM WAREHOUSE1;
+
+WAREHOUSE WAREH
+      NO: CITY:
+--------- -----
+     1111 WEQ
+     2222 WQER
+     3333 CDE
+     4444 BLORE
+     5555 DERS
+
+SQL>  TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOPUSE1 TABLE';
+SQL>  BTITLE 'BYE';
+SQL>  COLUMN WAREHOUSE HEADING 'WAREHOUSE|NO:';
+SQL>  COLUMN CITY HEADING 'WAREHOUSE|CITY:';
+SQL>  COLUMN ORD HEADING 'ORDER|NUMBR:';
+SQL>  COLUMN SHIPDATE HEADING 'SHIPDATE:';
+SQL>  BREAK ON SHIPDATE;
+SQL> SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE (WAREHOUSE1.WAREHOUSE=SHIPME
+NT1.WAREHOUSE AND  WAREHOUSE1.CITY='WEQ');
+SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE (WAREHOUSE1.WAREHOUSE=SHIPMENT1.W
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> SELECT * FROM SHIPMENT1;
+
+Sat Oct 10                                                                                 page    1
+                                       SHIPMENT AND WAREHOUSE
+                             GIVEN FROM SHIPMENT1 AND WAREHOPUSE1 TABLE
+
+    ORDER WAREHOUSE
+   NUMBR:       NO: SHIPDATE:
+--------- --------- ---------
+       11      1111 10-JAN-09
+       22      2222 08-JAN-07
+       33      3333 07-FEB-07
+       44      4444 06-JAN-06
+       55      5555 03-JAN-03
+
+
+
+
+
+
+
+
+
+
+                                                BYE
+
+SQL> TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOUSE1 TABLE';BTITLE 'BYE';
+SQL> COLUMN WAREHOUSE HEADING 'WAREHOUSE|NO:';
+SQL> COLUMN CITY HEADING 'WAREHOUSE|CITY:';
+SQL> COLUMN ORD HEADING 'ORDER|NUMBR:';
+SQL> COLUMN SHIPDATE HEADING 'SHIPDATE:';
+SQL> BREAK ON SHIPDATE;
+SQL> SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE (WAREHOUSE1.WAREHOUSE=SHIPME
+NT1.WAREHOUSE AND  WAREHOUSE1.CITY='WEQ');
+SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE (WAREHOUSE1.WAREHOUSE=SHIPMENT1.W
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL>  TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOUSE1 TABLE';
+SQL> BTITLE 'BYE';
+SQL> COLUMN WAREHOUSE HEADING 'WAREHOUSE|NO:';
+SQL> COLUMN CITY HEADING 'WAREHOUSE|CITY:';
+SQL> COLUMN ORD HEADING 'ORDER|NUMBR:';
+SQL> COLUMN SHIPDATE HEADING 'SHIPDATE:';
+SQL> BREAK ON SHIPDATE;
+SQL> SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHOUSE=SHIPMEN
+T1.WAREHOUSE AND  WAREHOUSE1.CITY='WEQ';
+SELECT WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHOUSE=SHIPMENT1.WA
+       *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> TTITLE 'SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOUSE1 TABLE';BTITLE 'BYE';
+SQL> COLUMN WAREHOUSE HEADING 'WAREHOUSE|NO:';
+SQL> COLUMN CITY HEADING 'WAREHOUSE|CITY:';
+SQL> COLUMN ORD HEADING 'ORDER|NUMBR:';
+SQL> COLUMN SHIPDATE HEADING 'SHIPDATE:';
+SQL> BREAK ON SHIPDATE; 
+SQL> SELECT WAREHOUSE1.WAREHOUSE,CITY,ORD,SHIPDATE FROM WAREHOUSE1,SHIPMENT1 WHERE WAREHOUSE1.WAREHO
+USE=SHIPMENT1.WAREHOUSE AND  WAREHOUSE1.CITY='WEQ';
+
+SHIPMENT AND WAREHOUSE|GIVEN FROM SHIPMENT1 AND WAREHOUSE1 TABLE;BTITLEBYE
+WAREHOUSE WAREH     ORDER
+      NO: CITY:    NUMBR: SHIPDATE:
+--------- ----- --------- ---------
+     1111 WEQ          11 10-JAN-09
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                BYE
+
+SQL> TTITLE OFF;
+SQL> BTITLE OFF;
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> Enter value for ord: 22
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for odate: 22jan09
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1:  insert into order7 values(&ord,'&odate',
+SP2-0042: unknown command beginning "old         1:  ..." - rest of line ignored.
+SQL> new   1:  insert into order7 values(22,'22jan09',
+SP2-0042: unknown command beginning "new         1:  ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for cust: ko;djlx
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for ordamt: xod,
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   2: &cust,&ordamt)
+SP2-0042: unknown command beginning "old         2: &..." - rest of line ignored.
+SQL> new   2: ko;djlx,xod,)
+SP2-0042: unknown command beginning "new         2: k..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> ko;djlx,xod,)
+SP2-0042: unknown command beginning "ko;djlx,xo..." - rest of line ignored.
+SQL>   *
+SP2-0226: Invalid line number
+SQL> ERROR at line 2:
+SP2-0042: unknown command beginning "ERROR at l..." - rest of line ignored.
+SQL> ORA-00911: invalid character
+SP2-0042: unknown command beginning "ORA-00911:..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> SQL> /
+SP2-0042: unknown command "SQL> /" - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for ord: 22
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for odate: 22-jan-09
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1:  insert into order7 values(&ord,'&odate',
+SP2-0042: unknown command beginning "old         1:  ..." - rest of line ignored.
+SQL> new   1:  insert into order7 values(22,'22-jan-09',
+SP2-0042: unknown command beginning "new         1:  ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for cust: 2
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for ordamt: 30000
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   2: &cust,&ordamt)
+SP2-0042: unknown command beginning "old         2: &..." - rest of line ignored.
+SQL> new   2: 2,30000)
+SP2-0042: unknown command beginning "new         2: 2..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> 
+SQL> 1 row created.
+SQL> 
+SQL> SQL> /
+SP2-0042: unknown command "SQL> /" - rest of line ignored.
+SQL> Enter value for ord: 33
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for odate: 10-feb-08
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1:  insert into order7 values(&ord,'&odate',
+SP2-0042: unknown command beginning "old         1:  ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> new   1:  insert into order7 values(33,'10-feb-08',
+SP2-0042: unknown command beginning "new         1:  ..." - rest of line ignored.
+SQL> Enter value for cust: 3
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for ordamt: 40000
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   2: &cust,&ordamt)
+SP2-0042: unknown command beginning "old         2: &..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> new   2: 3,40000)
+SP2-0042: unknown command beginning "new         2: 3..." - rest of line ignored.
+SQL> 
+SQL> 1 row created.
+SQL> 
+SQL> SQL> /
+SP2-0042: unknown command "SQL> /" - rest of line ignored.
+SQL> Enter value for ord: 44
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for odate: 12-mar-07
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> old   1:  insert into order7 values(&ord,'&odate',
+SP2-0042: unknown command beginning "old         1:  ..." - rest of line ignored.
+SQL> new   1:  insert into order7 values(44,'12-mar-07',
+SP2-0042: unknown command beginning "new         1:  ..." - rest of line ignored.
+SQL> Enter value for cust: 4
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> Enter value for ordamt: 50000
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> old   2: &cust,&ordamt)
+SP2-0042: unknown command beginning "old         2: &..." - rest of line ignored.
+SQL> new   2: 4,50000)
+SP2-0042: unknown command beginning "new         2: 4..." - rest of line ignored.
+SQL> 
+SQL> 1 row created.
+SQL> 
+SQL> SQL> /
+SP2-0042: unknown command "SQL> /" - rest of line ignored.
+SQL> Enter value for ord: 55
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for odate: 13-apr-05
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1:  insert into order7 values(&ord,'&odate',
+SP2-0042: unknown command beginning "old         1:  ..." - rest of line ignored.
+SQL> new   1:  insert into order7 values(55,'13-apr-05',
+SP2-0042: unknown command beginning "new         1:  ..." - rest of line ignored.
+SQL> Enter value for cust: 5
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for ordamt: 500089
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   2: &cust,&ordamt)
+SP2-0042: unknown command beginning "old         2: &..." - rest of line ignored.
+SQL> new   2: 5,500089)
+SP2-0042: unknown command beginning "new         2: 5..." - rest of line ignored.
+SQL> 5,500089)
+SP2-0042: unknown command "5,500089)" - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>   *
+SP2-0226: Invalid line number
+SQL> ERROR at line 2:
+SP2-0042: unknown command beginning "ERROR at l..." - rest of line ignored.
+SQL> ORA-01438: value larger than specified precision allows for this column
+SP2-0042: unknown command beginning "ORA-01438:..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> SQL> /
+SP2-0042: unknown command "SQL> /" - rest of line ignored.
+SQL> Enter value for ord: 55
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for odate: 08-apr-08
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   1:  insert into order7 values(&ord,'&odate',
+SP2-0042: unknown command beginning "old         1:  ..." - rest of line ignored.
+SQL> new   1:  insert into order7 values(55,'08-apr-08',
+SP2-0042: unknown command beginning "new         1:  ..." - rest of line ignored.
+SQL> Enter value for cust: 5
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Enter value for ordamt: 60000
+SP2-0042: unknown command beginning "Enter valu..." - rest of line ignored.
+SQL> old   2: &cust,&ordamt)
+SP2-0042: unknown command beginning "old         2: &..." - rest of line ignored.
+SQL> new   2: 5,60000)
+SP2-0042: unknown command beginning "new         2: 5..." - rest of line ignored.
+SQL> 
+SQL> 1 row created.
+SQL> 
+SQL> SQL> desc shiment;
+SP2-0042: unknown command beginning "SQL> desc ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> ERROR:
+SP2-0042: unknown command "ERROR:" - rest of line ignored.
+SQL> ORA-04043: object shiment does not exist
+SP2-0042: unknown command beginning "ORA-04043:..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> SQL> desc shipment;
+SP2-0042: unknown command beginning "SQL> desc ..." - rest of line ignored.
+SQL>  Name                                                  Null?    Type
+SP2-0042: unknown command beginning "Name      ..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>  ----------------------------------------------------- -------- -------------------------------
+-----
+SQL>  ORD                                                   NOT NULL NUMBER(5)
+SP2-0042: unknown command beginning "ORD             ..." - rest of line ignored.
+SQL>  WAREHOUSE                                             NOT NULL NUMBER(5)
+SP2-0042: unknown command beginning "WAREHOUSE ..." - rest of line ignored.
+SQL>  SHIPDATE                                                       VARCHAR2(5)
+SP2-0042: unknown command beginning "SHIPDATE  ..." - rest of line ignored.
+SQL> 
+SQL> SQL> create table shipment1(ord number(5),
+SP2-0042: unknown command beginning "SQL> creat..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>   2  warehouse number(5),SHIPDATE DATE,
+SQL>   3  PRIMARY KEY(ORD,WAREHOUSE),
+SQL>   4  FOREIGN KEY(ORD) REFERENCES OREDER7(ORD),
+SQL>   5  FOREIGN KEY(WAREHOUSE) REFERENCES WAREHOUSE1(WAREHOUSE));
+SQL> FOREIGN KEY(ORD) REFERENCES OREDER7(ORD),
+SP2-0042: unknown command beginning "FOREIGN KE..." - rest of line ignored.
+SQL>                             *
+SP2-0226: Invalid line number
+SQL> ERROR at line 4:
+SP2-0042: unknown command beginning "ERROR at l..." - rest of line ignored.
+SQL> ORA-00942: table or view does not exist
+SP2-0042: unknown command beginning "ORA-00942:..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> SQL> create table shipment1(ord number(5),
+SP2-0042: unknown command beginning "SQL> creat..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>   2  warehouse number(5),SHIPDATE DATE,
+SQL>   3   PRIMARY KEY(ORD,WAREHOUSE),
+SQL>   4   FOREIGN KEY(ORD) REFERENCES ORDER7(ORD),
+SQL>   5  FOREIGN KEY(WAREHOUSE) REFERENCES WAREHOUSE1(WAREHOUSE));
+SQL> 
+SQL> Table created.
+SP2-0042: unknown command beginning "Table crea..." - rest of line ignored.
+SQL> 
+SQL> SQL> SELECT * FROM OREDR7;
+SP2-0042: unknown command beginning "SQL> SELEC..." - rest of line ignored.
+SQL> SELECT * FROM OREDR7
+  2                *
+  3  ERROR at line 1:
+  4  ORA-00942: table or view does not exist
+  5  
+SQL> 
+SQL> SQL> SELECT * FROM ORDER7;
+SP2-0042: unknown command beginning "SQL> SELEC..." - rest of line ignored.
+SQL> 
+SQL>       ORD ODATE          CUST    ORDAMT
+SP2-0042: unknown command beginning "ORD ODATE ..." - rest of line ignored.
+SQL> --------- --------- --------- ---------
+SQL>        11 11-JAN-08         1     20000
+SQL>        22 22-JAN-09         2     30000
+SQL>        33 10-FEB-08         3     40000
+SQL>        44 12-MAR-07         4     50000
+SQL>        55 08-APR-08         5     60000
+SQL> 
+SQL> SQL> DESC ITEM;
+SP2-0042: unknown command beginning "SQL> DESC ..." - rest of line ignored.

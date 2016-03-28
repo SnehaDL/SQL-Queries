@@ -1,0 +1,548 @@
+SQL> desc student;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REGNO                                                 NOT NULL VARCHAR2(10)
+ NAME                                                           VARCHAR2(20)
+ MAJOR                                                          VARCHAR2(10)
+ BDATE                                                          DATE
+
+SQL> desc course;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CNO                                                   NOT NULL NUMBER(5)
+ CNAME                                                          VARCHAR2(20)
+ DEPT                                                           VARCHAR2(20)
+
+SQL> desc enroll;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REGNO                                                 NOT NULL VARCHAR2(20)
+ CNO                                                   NOT NULL NUMBER(5)
+ SEM                                                            NUMBER(3)
+ MARKS                                                          NUMBER(5)
+
+SQL> desc bookadop;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CNO                                                   NOT NULL NUMBER(5)
+ SEM                                                            NUMBER(5)
+ BOOK_ISBN                                             NOT NULL NUMBER(5)
+
+SQL> desc text;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ BOOK_ISBN                                             NOT NULL NUMBER(5)
+ BOOKTITLE                                                      VARCHAR2(20)
+ PUBLISHER                                                      VARCHAR2(10)
+ AUTHOR                                                         VARCHAR2(10)
+
+SQL> select course.cno,bookadop,book_isbn,text.booktitle from course,text,bookadop 
+  2  where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  3  COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  4  SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)
+  5  =>2)ORDER BY BOOK_TITLE;
+=>2)ORDER BY BOOK_TITLE
+ *
+ERROR at line 5:
+ORA-00936: missing expression
+
+
+SQL> select course.cno,bookadop,book_isbn,text.booktitle 
+  2  from course,text,bookadop
+  3  where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4  COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5  SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)=>1)
+  6  ORDER BY BOOK_TITLE;
+SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)=>1)
+                                                              *
+ERROR at line 5:
+ORA-00936: missing expression
+
+
+SQL>  select course.cno,bookadop,book_isbn,text.booktitle 
+  2   from course,text,bookadop
+  3   where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4   COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5   SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)=>1)
+  6   ORDER BY BOOK_TITLE;
+ SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)=>1)
+                                                               *
+ERROR at line 5:
+ORA-00936: missing expression
+
+
+SQL>  select course.cno,bookadop,book_isbn,text.booktitle 
+  2   from course,text,bookadop
+  3   where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4   COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5   SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)=>2)
+  6  ORDER BY BOOK_TITLE;
+ SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)=>2)
+                                                               *
+ERROR at line 5:
+ORA-00936: missing expression
+
+
+SQL> select course.cno,bookadop,book_isbn,text.booktitle 
+  2  from course,text,bookadop
+  3  where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4  COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5  SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  6   ORDER BY BOOK_TITLE;
+ ORDER BY BOOK_TITLE
+          *
+ERROR at line 6:
+ORA-00904: invalid column name
+
+
+SQL> DESC TEXT;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ BOOK_ISBN                                             NOT NULL NUMBER(5)
+ BOOKTITLE                                                      VARCHAR2(20)
+ PUBLISHER                                                      VARCHAR2(10)
+ AUTHOR                                                         VARCHAR2(10)
+
+SQL> select course.cno,bookadop,book_isbn,text.booktitle 
+  2  from course,text,bookadop
+  3  where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4  COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5  SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  6  ORDER BY BOOKTITLE;
+select course.cno,bookadop,book_isbn,text.booktitle
+                           *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> (
+  2  select course.cno,bookadop,book_isbn,text.booktitle 
+  3  from course,text,bookadop
+  4  where dept='cs') AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  5   COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  6   SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  7   ORDER BY BOOKTITLE;
+where dept='cs') AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND
+                 *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended
+
+
+SQL>  select course.cno,bookadop,book_isbn,text.booktitle 
+  2   from course,text,bookadop
+  3   where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4  COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5  SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  6  ORDER BY BOOKTITLE;
+ select course.cno,bookadop,book_isbn,text.booktitle
+                            *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL>  select course.cno,bookadop.book_isbn,text.booktitle 
+  2    from course,text,bookadop
+  3    where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4   COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5   SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  6   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> select course.cno,bookadop.book_isbn,text.booktitle 
+  2   from course,text,bookadop
+  3   where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4  COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5  SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>1)
+  6  ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL>  select course.cno,bookadop.book_isbn,text.booktitle 
+  2    from course,text,bookadop
+  3    where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4   COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5   SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>1)
+  6   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> 
+SQL>   select course.cno,bookadop.book_isbn,text.booktitle 
+  2     from course,text,bookadop
+  3     where dept='cs' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4    COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5    SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>=2)
+  6  ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> SELECT * FROM COURSE;
+
+      CNO CNAME                DEPT
+--------- -------------------- --------------------
+       10 computr sci          cse
+       20 computr sci          cse
+       30 java                 cse
+       40 oracl                cse
+       50 vb                   cse
+
+SQL> SELECT * FROM TEXT;
+
+BOOK_ISBN BOOKTITLE            PUBLISHER  AUTHOR
+--------- -------------------- ---------- ----------
+      100 ds                   padma      reddy
+      200 ada                  levitn     shilpa
+      300 co                   shilpa     padma
+      400 se                   shilpa     leviton
+      500 oops                 shilpa     donald
+
+SQL> SELECT * FROM BOOKADOP;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+
+SQL> INSERT INTO TEXT VALUES(&BOOK_ISBN,'&BOOK_TITLE',
+  2  ;['PL[P
+  3  ;
+Enter value for book_isbn: 
+Enter value for book_title: 
+old   1: INSERT INTO TEXT VALUES(&BOOK_ISBN,'&BOOK_TITLE',
+new   1: INSERT INTO TEXT VALUES(,'',
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN);
+Enter value for cno: 10
+Enter value for sem: 3
+Enter value for book_isbn: 100
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(10,3,100)
+INSERT INTO BOOKADOP VALUES(10,3,100)
+            *
+ERROR at line 1:
+ORA-00001: unique constraint (CS075.SYS_C004999) violated
+
+
+SQL> /
+Enter value for cno: 10 
+Enter value for sem: 6
+Enter value for book_isbn: 100
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(10 ,6,100)
+INSERT INTO BOOKADOP VALUES(10 ,6,100)
+            *
+ERROR at line 1:
+ORA-00001: unique constraint (CS075.SYS_C004999) violated
+
+
+SQL> /
+Enter value for cno: LL;
+Enter value for sem: PPL
+Enter value for book_isbn: O
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(LL;,PPL,O)
+INSERT INTO BOOKADOP VALUES(LL;,PPL,O)
+                              *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> INSERT INTO TEXT VALUES(23,'DS','PADMA','DVG');
+
+1 row created.
+
+SQL> INSERT INTO BOOKADOP VALUES(10,2,100);
+INSERT INTO BOOKADOP VALUES(10,2,100)
+            *
+ERROR at line 1:
+ORA-00001: unique constraint (CS075.SYS_C004999) violated
+
+
+SQL> 
+SQL>  select course.cno,bookadop.book_isbn,text.booktitle 
+  2    from course,text,bookadop
+  3   where dept='CSE' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4     COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5     SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>=2)
+  6   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> 
+SQL>  select course.cno,bookadop.book_isbn,text.booktitle 
+  2    from course,text,bookadop
+  3   where dept='CSE' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4     COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5     SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>=2)
+  6   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> SELECT * FROM COURSE;
+
+      CNO CNAME                DEPT
+--------- -------------------- --------------------
+       10 computr sci          cse
+       20 computr sci          cse
+       30 java                 cse
+       40 oracl                cse
+       50 vb                   cse
+
+SQL> SELECT * FROM BOOKADOP;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+
+SQL> INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN);
+Enter value for cno: 10
+Enter value for sem: 3
+Enter value for book_isbn: 400
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(10,3,400)
+
+1 row created.
+
+SQL> /
+Enter value for cno: 10
+Enter value for sem: 3
+Enter value for book_isbn: 500
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(10,3,500)
+
+1 row created.
+
+SQL>  select course.cno,bookadop.book_isbn,text.booktitle 
+  2    from course,text,bookadop
+  3   where dept='CSE' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4     COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5     SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>=2)
+  6   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> UPDATE COURSE
+  2  
+SQL> DELETE COURSE;
+DELETE COURSE
+       *
+ERROR at line 1:
+ORA-02292: integrity constraint (CS075.SYS_C004989) violated - child record found
+
+
+SQL> UPDATE COURSE WHERE CNAME='COMPUTR SCI'
+  2  SET DEPT='IS';
+UPDATE COURSE WHERE CNAME='COMPUTR SCI'
+              *
+ERROR at line 1:
+ORA-00971: missing SET keyword
+
+
+SQL> UPDATE COURSE SET DEPT='IS'
+  2  WHERE CNAME='COMPUTR SCI';
+
+0 rows updated.
+
+SQL> SELECT * FROM COURSE;
+
+      CNO CNAME                DEPT
+--------- -------------------- --------------------
+       10 computr sci          cse
+       20 computr sci          cse
+       30 java                 cse
+       40 oracl                cse
+       50 vb                   cse
+
+SQL>  UPDATE COURSE SET DEPT='IS'
+  2  WHERE CNAME='computr sci';
+
+2 rows updated.
+
+SQL> UPDATE COURSE SET DEPT='mec'
+  2  WHERE CNAME='java';
+
+1 row updated.
+
+SQL> select * from course;
+
+      CNO CNAME                DEPT
+--------- -------------------- --------------------
+       10 computr sci          IS
+       20 computr sci          IS
+       30 java                 mec
+       40 oracl                cse
+       50 vb                   cse
+
+SQL> select * from bookadop;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+       10         3       400
+       10         3       500
+
+7 rows selected.
+//4th query//
+SQL> 
+SQL>  select course.cno,bookadop.book_isbn,text.booktitle 
+  2    from course,text,bookadop
+  3  where dept='IS' AND TEXT.BOOK_ISBN=BOOKADOP.BOOK_ISBN AND 
+  4     COURSE.CNO=BOOKADOP.CNO AND COURSE.CNO IN(
+  5     SELECT CNO FROM BOOKADOP GROUP BY CNO HAVING COUNT(BOOK_ISBN)>=2)
+  6   ORDER BY BOOKTITLE;
+
+      CNO BOOK_ISBN BOOKTITLE
+--------- --------- --------------------
+       10       100 ds
+       10       500 oops
+       10       400 se
+
+SQL> select * from taxt;
+select * from taxt
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from text;
+
+BOOK_ISBN BOOKTITLE            PUBLISHER  AUTHOR
+--------- -------------------- ---------- ----------
+      100 ds                   padma      reddy
+      200 ada                  levitn     shilpa
+      300 co                   shilpa     padma
+      400 se                   shilpa     leviton
+      500 oops                 shilpa     donald
+       23 DS                   PADMA      DVG
+
+6 rows selected.
+
+SQL> select course.dept,count(*)
+  2  from course,bookadop where course.cno=bookafop.cno
+  3  group by course.dept
+  4  intersect
+  5  select course.dept,count(*) from
+  6  course,bookadop,text where
+  7  course.cno=bookadop.cno AND 
+  8  BOOKADOP.BOOK_ISBN=TEXT.BOOK_ISBN
+  9  AND TEXT.PUBLISHER='shilpa'
+ 10  group by course.dept;
+from course,bookadop where course.cno=bookafop.cno
+                                               *
+ERROR at line 2:
+ORA-00904: invalid column name
+
+//5th query//
+SQL> select course.dept,count(*)
+  2   from course,bookadop where course.cno=bookadop.cno
+  3  group by course.dept
+  4  intersect
+  5  select course.dept,count(*) from
+  6  course,bookadop,text where
+  7  course.cno=bookadop.cno AND 
+  8  BOOKADOP.BOOK_ISBN=TEXT.BOOK_ISBN
+  9  AND TEXT.PUBLISHER='shilpa'
+ 10  group by course.dept;
+
+DEPT                  COUNT(*)
+-------------------- ---------
+cse                          2
+mec                          1
+
+SQL> select * from course;
+
+      CNO CNAME                DEPT
+--------- -------------------- --------------------
+       10 computr sci          IS
+       20 computr sci          IS
+       30 java                 mec
+       40 oracl                cse
+       50 vb                   cse
+
+SQL> select * from bookadop;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+       10         3       400
+       10         3       500
+
+7 rows selected.
+
+SQL> select * from text;
+
+BOOK_ISBN BOOKTITLE            PUBLISHER  AUTHOR
+--------- -------------------- ---------- ----------
+      100 ds                   padma      reddy
+      200 ada                  levitn     shilpa
+      300 co                   shilpa     padma
+      400 se                   shilpa     leviton
+      500 oops                 shilpa     donald
+       23 DS                   PADMA      DVG
+
+6 rows selected.
+
+SQL> insert into text values(23,'vetr','sapna','robn');
+insert into text values(23,'vetr','sapna','robn')
+            *
+ERROR at line 1:
+ORA-00001: unique constraint (CS075.SYS_C004998) violated
+
+//3rd query//
+SQL>  insert into text values(19,'vetr','sapna','robn');
+
+1 row created.
+
+SQL> insert into bookadop values(10,4,19);
+
+1 row created.
+
+SQL> selext * from text;
+SP2-0042: unknown command beginning "selext * f..." - rest of line ignored.
+SQL> select * from text;
+
+BOOK_ISBN BOOKTITLE            PUBLISHER  AUTHOR
+--------- -------------------- ---------- ----------
+      100 ds                   padma      reddy
+      200 ada                  levitn     shilpa
+      300 co                   shilpa     padma
+      400 se                   shilpa     leviton
+      500 oops                 shilpa     donald
+       23 DS                   PADMA      DVG
+       19 vetr                 sapna      robn
+
+7 rows selected.
+
+SQL> select * from bookadop;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+       10         3       400
+       10         3       500
+       10         4        19
+
+8 rows selected.

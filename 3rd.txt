@@ -1,0 +1,275 @@
+Connected to:
+Oracle8i Release 8.1.5.0.0 - Production
+With the Java option
+PL/SQL Release 8.1.5.0.0 - Production
+
+SQL> select * from bookadop;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+
+SQL> select * from text;
+
+BOOK_ISBN BOOKTITLE            PUBLISHER  AUTHOR
+--------- -------------------- ---------- ----------
+      100 ds                   padma      reddy
+      200 ada                  levitn     shilpa
+      300 co                   shilpa     padma
+      400 se                   shilpa     leviton
+      500 oops                 shilpa     donald
+
+SQL> delete from text where
+  2  booktitle='oops';
+delete from text where
+            *
+ERROR at line 1:
+ORA-02292: integrity constraint (CS075.SYS_C005001) violated - child record found
+
+
+SQL> delete from text where
+  2  book_isbn=100;
+delete from text where
+            *
+ERROR at line 1:
+ORA-02292: integrity constraint (CS075.SYS_C005001) violated - child record found
+
+
+SQL> select * from bookadop;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+
+SQL> delete from text where
+  2  author='reddy';
+delete from text where
+            *
+ERROR at line 1:
+ORA-02292: integrity constraint (CS075.SYS_C005001) violated - child record found
+
+
+SQL> delete from text where
+  2   author=reddy;
+ author=reddy
+        *
+ERROR at line 2:
+ORA-00904: invalid column name
+
+
+SQL> select * from taxt;
+select * from taxt
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from text;
+
+BOOK_ISBN BOOKTITLE            PUBLISHER  AUTHOR
+--------- -------------------- ---------- ----------
+      100 ds                   padma      reddy
+      200 ada                  levitn     shilpa
+      300 co                   shilpa     padma
+      400 se                   shilpa     leviton
+      500 oops                 shilpa     donald
+
+SQL> select * from bookadop;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+
+SQL> insert into taxt values(&book_isbn,'&booktitle','&publisher'
+  2  '&author');
+Enter value for book_isbn: 600
+Enter value for booktitle: ds
+Enter value for publisher: padma
+old   1: insert into taxt values(&book_isbn,'&booktitle','&publisher'
+new   1: insert into taxt values(600,'ds','padma'
+Enter value for author: reddy
+old   2: '&author')
+new   2: 'reddy')
+'reddy')
+*
+ERROR at line 2:
+ORA-00917: missing comma
+
+
+SQL> insert into text values(&book_isbn,'&booktitle','&publisher'
+  2  '&author');
+Enter value for book_isbn: 600
+Enter value for booktitle: ds
+Enter value for publisher: padma
+old   1: insert into text values(&book_isbn,'&booktitle','&publisher'
+new   1: insert into text values(600,'ds','padma'
+Enter value for author: reddy
+old   2: '&author')
+new   2: 'reddy')
+'reddy')
+*
+ERROR at line 2:
+ORA-00917: missing comma
+
+
+SQL> INSERT INTO TEXT VALUES(&BOOK_ISBN,'&BOOKTITLE',
+  2  '&PUBLISHER','&AUTHOR');
+Enter value for book_isbn: 600
+Enter value for booktitle: DS
+old   1: INSERT INTO TEXT VALUES(&BOOK_ISBN,'&BOOKTITLE',
+new   1: INSERT INTO TEXT VALUES(600,'DS',
+Enter value for publisher: PADMA
+Enter value for author: REDDY
+old   2: '&PUBLISHER','&AUTHOR')
+new   2: 'PADMA','REDDY')
+
+1 row created.
+
+SQL> SELECT * FROM BOOK_ADOP;
+SELECT * FROM BOOK_ADOP
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM BOOKADOP;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+
+SQL> INSERT INTO BOOKADOP VALUES(&CNO,'&SEM,
+  2  &BOOK_ISBN);
+Enter value for cno: 20
+Enter value for sem: 3
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,'&SEM,
+new   1: INSERT INTO BOOKADOP VALUES(20,'3,
+Enter value for book_isbn: 600
+old   2: &BOOK_ISBN)
+new   2: 600)
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO BOOKADOP VALUES(&CNO,'&SEM',
+  2  &BOOK_ISBN);
+Enter value for cno: 20
+Enter value for sem: 3
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,'&SEM',
+new   1: INSERT INTO BOOKADOP VALUES(20,'3',
+Enter value for book_isbn: 600
+old   2: &BOOK_ISBN)
+new   2: 600)
+
+1 row created.
+
+SQL> SELECT COURSE.CNO,BOOKADOP,BOOK_ISBN,TEXT.BOOKTITLE 
+  2  FROM COURSE,TEXT,BOOKADOP WHERE DEPT='CS' AND TEXT.BOOK_ISBN=
+  3  BOOKADOP.CNO AND COURSE.CNO IN(SELECT CNO FROM BOOKADOP
+  4  GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  5  ORDER BY BOOKTITLE;
+SELECT COURSE.CNO,BOOKADOP,BOOK_ISBN,TEXT.BOOKTITLE
+                           *
+ERROR at line 1:
+ORA-00918: column ambiguously defined
+
+
+SQL> DESC BOOKADOP;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CNO                                                   NOT NULL NUMBER(5)
+ SEM                                                            NUMBER(5)
+ BOOK_ISBN                                             NOT NULL NUMBER(5)
+
+SQL>  SELECT COURSE.CNO,BOOKADOP.BOOK_ISBN,TEXT.BOOKTITLE 
+  2   FROM COURSE,TEXT,BOOKADOP WHERE DEPT='CS' AND TEXT.BOOK_ISBN=
+  3   BOOKADOP.CNO AND COURSE.CNO IN(SELECT CNO FROM BOOKADOP
+  4   GROUP BY CNO HAVING COUNT(BOOK_ISBN)>2)
+  5   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> 
+SQL>  SELECT COURSE.CNO,BOOKADOP.BOOK_ISBN,TEXT.BOOKTITLE 
+  2   FROM COURSE,TEXT,BOOKADOP WHERE DEPT='CS' AND TEXT.BOOK_ISBN=
+  3   BOOKADOP.CNO AND COURSE.CNO IN(SELECT CNO FROM BOOKADOP
+  4  GROUP BY CNO HAVING COUNT(BOOK_ISBN)>1)
+  5   ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL>  
+SQL>   SELECT COURSE.CNO,BOOKADOP.BOOK_ISBN,TEXT.BOOKTITLE 
+  2    FROM COURSE,TEXT,BOOKADOP WHERE DEPT='CS' AND TEXT.BOOK_ISBN=
+  3    BOOKADOP.CNO AND COURSE.CNO IN(SELECT CNO FROM BOOKADOP
+  4   GROUP BY CNO HAVING COUNT(BOOK_ISBN)>1)
+  5    ORDER BY BOOKTITLE;
+
+no rows selected
+
+SQL> SELECT * FROM BOOKADOP;
+
+      CNO       SEM BOOK_ISBN
+--------- --------- ---------
+       10         3       100
+       20         4       200
+       30         4       300
+       40         5       400
+       50         5       500
+       20         3       600
+
+6 rows selected.
+
+SQL> INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN);
+Enter value for cno: 20
+Enter value for sem: 6
+Enter value for book_isbn: 600
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(20,6,600)
+INSERT INTO BOOKADOP VALUES(20,6,600)
+            *
+ERROR at line 1:
+ORA-00001: unique constraint (CS075.SYS_C004999) violated
+
+
+SQL> /
+Enter value for cno: 20
+Enter value for sem: 5
+Enter value for book_isbn: 700
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(20,5,700)
+INSERT INTO BOOKADOP VALUES(20,5,700)
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C005001) violated - parent key not found
+
+
+SQL> /
+Enter value for cno: 20
+Enter value for sem: 3
+Enter value for book_isbn: 200
+old   1: INSERT INTO BOOKADOP VALUES(&CNO,&SEM,&BOOK_ISBN)
+new   1: INSERT INTO BOOKADOP VALUES(20,3,200)
+INSERT INTO BOOKADOP VALUES(20,3,200)
+            *
+ERROR at line 1:
+ORA-00001: unique constraint (CS075.SYS_C004999) violated
+
+
+SQL> 

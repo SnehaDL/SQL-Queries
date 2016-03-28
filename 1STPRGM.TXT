@@ -1,0 +1,625 @@
+(c) Copyright 1999 Oracle Corporation.  All rights reserved.
+
+
+Connected to:
+Oracle8i Release 8.1.5.0.0 - Production
+With the Java option
+PL/SQL Release 8.1.5.0.0 - Production
+
+SQL> desc car;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REGNO                                                 NOT NULL VARCHAR2(10)
+ MODEL                                                          VARCHAR2(10)
+ YEAR                                                           NUMBER(4)
+
+SQL> desc accident
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REPNO                                                 NOT NULL NUMBER(5)
+ ACCI_DATE                                                      DATE
+ LOC                                                            VARCHAR2(10)
+
+SQL> desc person;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL VARCHAR2(20)
+ NAME                                                           VARCHAR2(10)
+ ADDRESS                                                        VARCHAR2(10)
+
+SQL> desc owns;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL VARCHAR2(20)
+ REGNO                                                 NOT NULL VARCHAR2(10)
+
+SQL> desc participated;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL VARCHAR2(20)
+ REGNO                                                 NOT NULL VARCHAR2(10)
+ REPNO                                                 NOT NULL NUMBER(5)
+ DAMAGEAMT                                                      NUMBER(10)
+
+SQL> select * from person;
+
+DID                  NAME       ADDRESS
+-------------------- ---------- ----------
+ka07                 manish     yelahanka
+ap1                  harshi     gandibajar
+123                  priyanka   kolar
+2341                 geeta      bagarpet;
+213                  yasha      mg road
+
+SQL> select * from car;
+
+REGNO      MODEL           YEAR
+---------- ---------- ---------
+ap111      benze           1990
+ka2222     bmw             1989
+mp3333     maruthi         1980
+ap9999     bmw             1978
+ap7777     audi            1999
+
+SQL> selact * from accident;
+SP2-0042: unknown command beginning "selact * f..." - rest of line ignored.
+SQL> select * from accident;
+
+no rows selected
+
+SQL> INSERT INTO ACCIDENT(&REPNO,'&AACI_DATE','&LOC');
+Enter value for repno: 100
+Enter value for aaci_date: 01JAN08
+Enter value for loc: BANGLORE
+old   1: INSERT INTO ACCIDENT(&REPNO,'&AACI_DATE','&LOC')
+new   1: INSERT INTO ACCIDENT(100,'01JAN08','BANGLORE')
+INSERT INTO ACCIDENT(100,'01JAN08','BANGLORE')
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> /
+Enter value for repno: 100
+Enter value for aaci_date: 09-JAN-08
+Enter value for loc: BANGLORE
+old   1: INSERT INTO ACCIDENT(&REPNO,'&AACI_DATE','&LOC')
+new   1: INSERT INTO ACCIDENT(100,'09-JAN-08','BANGLORE')
+INSERT INTO ACCIDENT(100,'09-JAN-08','BANGLORE')
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> /
+Enter value for repno: 1
+Enter value for aaci_date: 2
+Enter value for loc: 1
+old   1: INSERT INTO ACCIDENT(&REPNO,'&AACI_DATE','&LOC')
+new   1: INSERT INTO ACCIDENT(1,'2','1')
+INSERT INTO ACCIDENT(1,'2','1')
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> INSERT INTO ACCIDENT(&REPNO,'&ACCI_DATE','&LOC');
+Enter value for repno: 100
+Enter value for acci_date: 01-JAN-08
+Enter value for loc: NAGPUR
+old   1: INSERT INTO ACCIDENT(&REPNO,'&ACCI_DATE','&LOC')
+new   1: INSERT INTO ACCIDENT(100,'01-JAN-08','NAGPUR')
+INSERT INTO ACCIDENT(100,'01-JAN-08','NAGPUR')
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> DESC ACCIDENT;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REPNO                                                 NOT NULL NUMBER(5)
+ ACCI_DATE                                                      DATE
+ LOC                                                            VARCHAR2(10)
+
+SQL> SELECT * FROM ACCIDENT;
+
+no rows selected
+
+SQL> INSERT INTO ACCIDENT('&REPNO','&ACCI_DATE','&LOC');
+Enter value for repno: 100
+Enter value for acci_date: 02-JAN-03
+Enter value for loc: DELHI
+old   1: INSERT INTO ACCIDENT('&REPNO','&ACCI_DATE','&LOC')
+new   1: INSERT INTO ACCIDENT('100','02-JAN-03','DELHI')
+INSERT INTO ACCIDENT('100','02-JAN-03','DELHI')
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL>  INSERT INTO ACCIDENT VALUES(&REPNO,'&ACCI_DATE','&LOC');
+Enter value for repno: 100
+Enter value for acci_date: 01-JAN-09
+Enter value for loc: DELHI
+old   1:  INSERT INTO ACCIDENT VALUES(&REPNO,'&ACCI_DATE','&LOC')
+new   1:  INSERT INTO ACCIDENT VALUES(100,'01-JAN-09','DELHI')
+
+1 row created.
+
+SQL> /
+Enter value for repno: 200
+Enter value for acci_date: 08-FEB-08
+Enter value for loc: KANPUR
+old   1:  INSERT INTO ACCIDENT VALUES(&REPNO,'&ACCI_DATE','&LOC')
+new   1:  INSERT INTO ACCIDENT VALUES(200,'08-FEB-08','KANPUR')
+
+1 row created.
+
+SQL> /
+Enter value for repno: 300
+Enter value for acci_date: 07-MAR-07
+Enter value for loc: RAICHUR
+old   1:  INSERT INTO ACCIDENT VALUES(&REPNO,'&ACCI_DATE','&LOC')
+new   1:  INSERT INTO ACCIDENT VALUES(300,'07-MAR-07','RAICHUR')
+
+1 row created.
+
+SQL> /
+Enter value for repno: 400
+Enter value for acci_date: 04-APR-02
+Enter value for loc: FRANCE;
+old   1:  INSERT INTO ACCIDENT VALUES(&REPNO,'&ACCI_DATE','&LOC')
+new   1:  INSERT INTO ACCIDENT VALUES(400,'04-APR-02','FRANCE;')
+
+1 row created.
+
+SQL> /
+Enter value for repno: 500
+Enter value for acci_date: 03-JAN-06
+Enter value for loc: MGROAD
+old   1:  INSERT INTO ACCIDENT VALUES(&REPNO,'&ACCI_DATE','&LOC')
+new   1:  INSERT INTO ACCIDENT VALUES(500,'03-JAN-06','MGROAD')
+
+1 row created.
+
+SQL> SELECT * FROM ACCIDENT;
+
+    REPNO ACCI_DATE LOC
+--------- --------- ----------
+      100 01-JAN-09 DELHI
+      200 08-FEB-08 KANPUR
+      300 07-MAR-07 RAICHUR
+      400 04-APR-02 FRANCE;
+      500 03-JAN-06 MGROAD
+
+SQL> SELECT * FROM PERSON;
+
+DID                  NAME       ADDRESS
+-------------------- ---------- ----------
+ka07                 manish     yelahanka
+ap1                  harshi     gandibajar
+123                  priyanka   kolar
+2341                 geeta      bagarpet;
+213                  yasha      mg road
+
+SQL> SELECT * FROM OWNS;
+
+no rows selected
+
+SQL> SELECT * FROM CAR;
+
+REGNO      MODEL           YEAR
+---------- ---------- ---------
+ap111      benze           1990
+ka2222     bmw             1989
+mp3333     maruthi         1980
+ap9999     bmw             1978
+ap7777     audi            1999
+
+SQL> DECS PERSON;
+SP2-0042: unknown command beginning "DECS PERSO..." - rest of line ignored.
+SQL> DESC PERSON;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL VARCHAR2(20)
+ NAME                                                           VARCHAR2(10)
+ ADDRESS                                                        VARCHAR2(10)
+
+SQL> DESC CAR;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REGNO                                                 NOT NULL VARCHAR2(10)
+ MODEL                                                          VARCHAR2(10)
+ YEAR                                                           NUMBER(4)
+
+SQL> SELECT * FROM OWNS;
+
+no rows selected
+
+SQL> INSERT INTO OWNS VALUES('&DID','REGNO');
+Enter value for did: KA07
+old   1: INSERT INTO OWNS VALUES('&DID','REGNO')
+new   1: INSERT INTO OWNS VALUES('KA07','REGNO')
+INSERT INTO OWNS VALUES('KA07','REGNO')
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C001812) violated - parent key not found
+
+
+SQL> /
+Enter value for did: ka07
+old   1: INSERT INTO OWNS VALUES('&DID','REGNO')
+new   1: INSERT INTO OWNS VALUES('ka07','REGNO')
+INSERT INTO OWNS VALUES('ka07','REGNO')
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C001812) violated - parent key not found
+
+
+SQL> desc owns;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL VARCHAR2(20)
+ REGNO                                                 NOT NULL VARCHAR2(10)
+
+SQL> insert into owns values('&did','&regno');
+Enter value for did: ka07
+Enter value for regno: ap111
+old   1: insert into owns values('&did','&regno')
+new   1: insert into owns values('ka07','ap111')
+
+1 row created.
+
+SQL> /
+Enter value for did: ap1
+Enter value for regno: ka2222
+old   1: insert into owns values('&did','&regno')
+new   1: insert into owns values('ap1','ka2222')
+
+1 row created.
+
+SQL> /
+Enter value for did: 123
+Enter value for regno: mp3333
+old   1: insert into owns values('&did','&regno')
+new   1: insert into owns values('123','mp3333')
+
+1 row created.
+
+SQL> /
+Enter value for did: 2341
+Enter value for regno: ap9999
+old   1: insert into owns values('&did','&regno')
+new   1: insert into owns values('2341','ap9999')
+
+1 row created.
+
+SQL> /
+Enter value for did: 213
+Enter value for regno: ap7777
+old   1: insert into owns values('&did','&regno')
+new   1: insert into owns values('213','ap7777')
+
+1 row created.
+
+SQL> select * from owns;
+
+DID                  REGNO
+-------------------- ----------
+ka07                 ap111
+ap1                  ka2222
+123                  mp3333
+2341                 ap9999
+213                  ap7777
+
+SQL> select * from participated;
+
+no rows selected
+
+SQL> insert into participated values(;
+insert into participated values(
+                               *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> desc participated;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL VARCHAR2(20)
+ REGNO                                                 NOT NULL VARCHAR2(10)
+ REPNO                                                 NOT NULL NUMBER(5)
+ DAMAGEAMT                                                      NUMBER(10)
+
+SQL>  insert into participated values('&DID','&REGNO','&REPNO',&DAMAGEAMT);
+Enter value for did: KA07
+Enter value for regno: AP111
+Enter value for repno: 120;0
+Enter value for damageamt: L;KO;
+old   1:  insert into participated values('&DID','&REGNO','&REPNO',&DAMAGEAMT)
+new   1:  insert into participated values('KA07','AP111','120;0',L;KO;)
+ insert into participated values('KA07','AP111','120;0',L;KO;)
+                                                         *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL>  insert into participated values('&DID','&REGNO',&REPNO,&DAMAGEAMT);
+Enter value for did: KA07
+Enter value for regno: AP111
+Enter value for repno: 120
+Enter value for damageamt: 20000
+old   1:  insert into participated values('&DID','&REGNO',&REPNO,&DAMAGEAMT)
+new   1:  insert into participated values('KA07','AP111',120,20000)
+ insert into participated values('KA07','AP111',120,20000)
+             *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C001828) violated - parent key not found
+
+
+SQL> insert into participated values('&did','&regno',&REPNO,&DAMAGEAMT);
+Enter value for did: ka07
+Enter value for regno: ap111
+Enter value for repno: 120
+Enter value for damageamt: 10000
+old   1: insert into participated values('&did','&regno',&REPNO,&DAMAGEAMT)
+new   1: insert into participated values('ka07','ap111',120,10000)
+insert into participated values('ka07','ap111',120,10000)
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C001828) violated - parent key not found
+
+
+SQL> /
+Enter value for did: ka07
+Enter value for regno: ap111
+Enter value for repno: 100
+Enter value for damageamt: 10000
+old   1: insert into participated values('&did','&regno',&REPNO,&DAMAGEAMT)
+new   1: insert into participated values('ka07','ap111',100,10000)
+
+1 row created.
+
+SQL> /
+Enter value for did: 123
+Enter value for regno: mp3333
+Enter value for repno: 300
+Enter value for damageamt: 20999
+old   1: insert into participated values('&did','&regno',&REPNO,&DAMAGEAMT)
+new   1: insert into participated values('123','mp3333',300,20999)
+
+1 row created.
+
+SQL> /
+Enter value for did: 123
+Enter value for regno: ap9999
+Enter value for repno: 400
+Enter value for damageamt: 45000
+old   1: insert into participated values('&did','&regno',&REPNO,&DAMAGEAMT)
+new   1: insert into participated values('123','ap9999',400,45000)
+
+1 row created.
+
+SQL> /
+Enter value for did: 213
+Enter value for regno: ap7777
+Enter value for repno: 500
+Enter value for damageamt: 50000
+old   1: insert into participated values('&did','&regno',&REPNO,&DAMAGEAMT)
+new   1: insert into participated values('213','ap7777',500,50000)
+
+1 row created.
+
+SQL> select * from participated;
+
+DID                  REGNO          REPNO DAMAGEAMT
+-------------------- ---------- --------- ---------
+ka07                 ap111            100     10000
+123                  mp3333           300     20999
+123                  ap9999           400     45000
+213                  ap7777           500     50000
+
+SQL> update participated set damageamt=25000
+  2  where repno=100 and regno=ap111;
+where repno=100 and regno=ap111
+                          *
+ERROR at line 2:
+ORA-00904: invalid column name
+
+
+SQL> update participated
+  2  (set damageamt=25000
+  3   where repno=100 and regno=ap111);
+(set damageamt=25000
+*
+ERROR at line 2:
+ORA-00971: missing SET keyword
+
+
+SQL> update participated set damageamt=25000
+  2  where repno=100 and regno=ap111;
+where repno=100 and regno=ap111
+                          *
+ERROR at line 2:
+ORA-00904: invalid column name
+
+
+SQL> update participated 
+  2  set damageamt=25000
+  3  where repno=100;
+
+1 row updated.
+
+SQL>  update participated
+  2  set damageamt=25000
+  3   where (repno=100 and regno=ap111);
+ where (repno=100 and regno=ap111)
+                            *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> update participated
+  2  set damageamt=25000
+  3  where repno=100 and regno='ap111';
+
+1 row updated.
+
+SQL> select * from participated;
+
+DID                  REGNO          REPNO DAMAGEAMT
+-------------------- ---------- --------- ---------
+ka07                 ap111            100     25000
+123                  mp3333           300     20999
+123                  ap9999           400     45000
+213                  ap7777           500     50000
+
+SQL> select * from accident;
+
+    REPNO ACCI_DATE LOC
+--------- --------- ----------
+      100 01-JAN-09 DELHI
+      200 08-FEB-08 KANPUR
+      300 07-MAR-07 RAICHUR
+      400 04-APR-02 FRANCE;
+      500 03-JAN-06 MGROAD
+
+SQL> insert into accident values(;
+insert into accident values(
+                           *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> desc accident;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ REPNO                                                 NOT NULL NUMBER(5)
+ ACCI_DATE                                                      DATE
+ LOC                                                            VARCHAR2(10)
+
+SQL> insert into accident values(&repno,'&acci_date','&loc');
+Enter value for repno: 600
+Enter value for acci_date: 23-jan-89
+Enter value for loc: kochin
+old   1: insert into accident values(&repno,'&acci_date','&loc')
+new   1: insert into accident values(600,'23-jan-89','kochin')
+
+1 row created.
+
+SQL> /
+Enter value for repno: 380
+Enter value for acci_date: 09-jan-08
+Enter value for loc: jaipur
+old   1: insert into accident values(&repno,'&acci_date','&loc')
+new   1: insert into accident values(380,'09-jan-08','jaipur')
+
+1 row created.
+
+SQL> select count(acci_date)
+  2  from accident 
+  3  where acci_date
+  4  like '__-___-08';
+
+COUNT(ACCI_DATE)
+----------------
+               2
+
+SQL> select count(model)
+  2  from car,participated
+  3  where car.regno=participated.regno
+  4  and model='bmw';
+
+COUNT(MODEL)
+------------
+           1
+
+SQL> ttitle 'OWNER OF THE CAR|GIVEN
+string beginning "'OWNER OF ..." missing terminating quote (').
+SQL> FROM OWNS TABLE';
+SP2-0042: unknown command beginning "FROM OWNS ..." - rest of line ignored.
+SQL>  ttitle 'OWNER OF THE CAR|
+string beginning "'OWNER OF ..." missing terminating quote (').
+SQL> ttitle 'OWNER OF THE CAR|GIVEN FROM OWNS TABLE';
+SQL> BTITLE 'BYE';
+SQL> COLUMN REGNO HEADING 'REGISTER|NUM';
+SQL> COLUMN MODEL HEADING 'MODEL';
+SQL> COLUMN YEAR HEADING 'YEAR';
+SQL> COLUMN DID HEADING 'YEAR';
+SQL> BREAK ON DID;
+SQL> SELECT CAR.REGNO,MODEL,YEAR,DID,
+  2  FROM CAR,OWNS
+  3  WHERE (CAR.REGNO=OWNS.REGNO);
+FROM CAR,OWNS
+*
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> SELECT CAR.REGNO,MODEL,YEAR,DID
+  2  FROM CAR,OWNS
+  3  WHERE (CAR.REGNO=OWNS.REGNO);
+
+Sat Oct 03                                                                                 page    1
+                                          OWNER OF THE CAR
+                                       GIVEN FROM OWNS TABLE
+
+REGISTER
+NUM        MODEL           YEAR YEAR
+---------- ---------- --------- --------------------
+ap111      benze           1990 ka07
+ka2222     bmw             1989 ap1
+mp3333     maruthi         1980 123
+ap9999     bmw             1978 2341
+ap7777     audi            1999 213
+
+
+
+
+
+
+
+
+
+
+                                                BYE
+
+SQL> ttitle 'OWNER OF THE CAR|GIVEN FROM OWNS TABLE';
+SQL> BTITLE 'BYE';
+SQL> COLUMN REGNO HEADING 'REGISTER|NUM';
+SQL> COLUMN MODEL HEADING 'MODEL';
+SQL> COLUMN YEAR HEADING 'YEAR';
+SQL> COLUMN DID HEADING 'DRIVER ID';
+SQL>  BREAK ON DID;
+SQL>  SELECT CAR.REGNO,MODEL,YEAR,DID
+  2   FROM CAR,OWNS
+  3   WHERE (CAR.REGNO=OWNS.REGNO);
+
+Sat Oct 03                                                                                 page    1
+                                          OWNER OF THE CAR
+                                       GIVEN FROM OWNS TABLE
+
+REGISTER
+NUM        MODEL           YEAR DRIVER ID
+---------- ---------- --------- --------------------
+ap111      benze           1990 ka07
+ka2222     bmw             1989 ap1
+mp3333     maruthi         1980 123
+ap9999     bmw             1978 2341
+ap7777     audi            1999 213
+
+
+
+
+
+
+
+
+
+
+                                                BYE
+
+SQL> TTITLE OFF;
+SQL> BTITLE OFF;
+SQL> 

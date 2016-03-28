@@ -1,0 +1,882 @@
+
+SQL>  CREATE TABLE AUTHOR(AUTHORID NUMBER(5),NAME VARCHAR2(10),
+  2  CITY VARCHAR2(10),COUNTRY VARCHAR2(10) PRIMARY KEY(AUTHOR ID));
+CITY VARCHAR2(10),COUNTRY VARCHAR2(10) PRIMARY KEY(AUTHOR ID))
+                                                  *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL>  CREATE TABLE AUTHOR(AUTHORID NUMBER(5),NAME VARCHAR2(10),
+  2   CITY VARCHAR2(10),COUNTRY VARCHAR2(10), PRIMARY KEY(AUTHOR ID));
+ CITY VARCHAR2(10),COUNTRY VARCHAR2(10), PRIMARY KEY(AUTHOR ID))
+                                                            *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE AUTHOR(AUTHORID NUMBER(5),NAME VARCHAR2(10),
+  2  CITY VARCHAR2(10),COUNTRY VARCHAR2(10), PRIMARY KEY(AUTHORID));
+
+Table created.
+
+SQL> DESC AUTHOR;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ AUTHORID                                              NOT NULL NUMBER(5)
+ NAME                                                           VARCHAR2(10)
+ CITY                                                           VARCHAR2(10)
+ COUNTRY                                                        VARCHAR2(10)
+
+SQL> CREATE TABLE PUBLISHER(PUBID NUMBER(5),NAME VARCHAR2(10),
+  2  CITY VARCHAR2(10),COUNTRY VARCHAR2(10),
+  3  PRIMARY KEY(PUBID));
+
+Table created.
+
+SQL> DESC PUBLISHER;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ PUBID                                                 NOT NULL NUMBER(5)
+ NAME                                                           VARCHAR2(10)
+ CITY                                                           VARCHAR2(10)
+ COUNTRY                                                        VARCHAR2(10)
+
+SQL> CREATE TABLE CATOGORY(CID NUMBER(5),DESC VARCHAR2(10)
+  2  PRIMARY KEY(CID));
+CREATE TABLE CATOGORY(CID NUMBER(5),DESC VARCHAR2(10)
+                                    *
+ERROR at line 1:
+ORA-00904: invalid column name
+
+
+SQL> CREATE TABLE CATOGORY(CID NUMBER(5),DESCRIPTION VARCHAR2(10)
+  2  PRIMARY KEY(CID));
+PRIMARY KEY(CID))
+           *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE CATOGORY(CID NUMBER(5),DESCRIPTION VARCHAR2(10),
+  2  PRIMARY KEY(CID));
+
+Table created.
+
+SQL> DESC CATOGORY;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CID                                                   NOT NULL NUMBER(5)
+ DESCRIPTION                                                    VARCHAR2(10)
+
+SQL> CREATE TABLE CATALOG(BID NUMBER(5),TITLE VARCHAR2(10),AID 
+  2  NUMBER(5),pid number(5),cid number(5),year number(5),
+  3  kjh7ghjkhi k/;
+kjh7ghjkhi k/
+            *
+ERROR at line 3:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE CATALOG(BID NUMBER(5),TITLE VARCHAR2(10),Authorid number(5),pubid number(5),cid nu
+mber(5),year number(5),primary key(BID),FOREIGN KEY(AUTHORID)
+  2  REFERENCES AUTHOR(AUTHORID),FOREIGN KEY(PUBID)
+  3  REFERENCES PUBLISHER(PUBID),FOREIGN KEY(CID)
+  4  REFERENCES CATEGORY(CID));
+REFERENCES CATEGORY(CID))
+           *
+ERROR at line 4:
+ORA-00942: table or view does not exist
+
+
+SQL> CREATE TABLE CATALOG(BID NUMBER(5),TITLE VARCHAR2(10),Authorid number(5),pubid number(5),cid nu
+
+  2  mber(5),year number(5),primary key(BID),FOREIGN KEY(AUTHORID)
+  3   REFERENCES AUTHOR(AUTHORID),FOREIGN KEY(PUBID)
+  4   REFERENCES PUBLISHER(PUBID),FOREIGN KEY(CID)
+  5  REFERENCES CATOGORY(CID));
+CREATE TABLE CATALOG(BID NUMBER(5),TITLE VARCHAR2(10),Authorid number(5),pubid number(5),cid nu
+                    *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL> CREATE TABLE CATALOG(BID NUMBER(5),TITLE VARCHAR2(10),
+  2  Authorid number(5),pubid number(5),cid number(5),year number(5)
+  3  ,primary key(BID),FOREIGN KEY(AUTHORID)
+  4  REFERENCES AUTHOR(AUTHORID),FOREIGN KEY(PUBID)
+  5  REFERENCES PUBLISHER(PUBID),FOREIGN KEY(CID)
+  6  REFERENCES CATOGORY(CID));
+
+Table created.
+
+SQL> DESC CATALOG;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ BID                                                   NOT NULL NUMBER(5)
+ TITLE                                                          VARCHAR2(10)
+ AUTHORID                                                       NUMBER(5)
+ PUBID                                                          NUMBER(5)
+ CID                                                            NUMBER(5)
+ YEAR                                                           NUMBER(5)
+
+SQL> CREATE TABLE ORDER_DETAILS(ONO NUMBER(5),
+  2  BID NUMBER(5),QUANTITY NUMBER(5),
+  3  PRIMARY KEY(ONO,BID),FOREIGN KEY(BID)
+  4  REFRENXEX CATALOG(BID));
+REFRENXEX CATALOG(BID))
+*
+ERROR at line 4:
+ORA-00905: missing keyword
+
+
+SQL> 
+SQL> CREATE TABLE ORDER_DETAILS(ONO NUMBER(5),
+  2  BID NUMBER(5),QUANTITY NUMBER(5),
+  3  PRIMARY KEY(ONO,BID),FOREIGN KEY(BID)
+  4  REFRENCES CATOLOG(BID));
+REFRENCES CATOLOG(BID))
+*
+ERROR at line 4:
+ORA-00905: missing keyword
+
+
+SQL>  
+SQL>  CREATE TABLE ORDER_DETAILS(ONO NUMBER(5),
+  2   BID NUMBER(5),QUANTITY NUMBER(5),
+  3   PRIMARY KEY(ONO,BID),FOREIGN KEY(BID)
+  4   REFERENCES CATOLOG(BID));
+ REFERENCES CATOLOG(BID))
+            *
+ERROR at line 4:
+ORA-00942: table or view does not exist
+
+
+SQL> CREATE TABLE ORDER_DETAILS(ONO NUMBER(5),
+  2  BID NUMBER(5),QUANTITY NUMBER(5),
+  3  PRIMARY KEY(ONO,BID),FOREIGN KEY(BID)
+  4   REFERENCES CATALOG(BID));
+
+Table created.
+
+SQL> INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY'(:
+  2  KHJKL;
+Enter value for authorid: M,NM';.;
+Enter value for name: ;;11
+Enter value for city: 1
+Enter value for country: 1
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY'(:
+new   1: INSERT INTO AUTHOR VALUES(M,NM';.;,';;11','1','1'(:
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY');
+Enter value for authorid: 1
+Enter value for name: ROBIN COOK
+Enter value for city: TEXAS
+Enter value for country: USA
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1: INSERT INTO AUTHOR VALUES(1,'ROBIN COOK','TEXAS','USA')
+
+1 row created.
+
+SQL> /
+Enter value for authorid: 2
+Enter value for name: SIDNEY SHELDEN
+Enter value for city: CALIFORNIA
+Enter value for country: USA
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1: INSERT INTO AUTHOR VALUES(2,'SIDNEY SHELDEN','CALIFORNIA','USA')
+INSERT INTO AUTHOR VALUES(2,'SIDNEY SHELDEN','CALIFORNIA','USA')
+            *
+ERROR at line 1:
+ORA-01401: inserted value too large for column
+
+
+SQL> 3
+SP2-0226: Invalid line number
+SQL> /
+Enter value for authorid: 3
+Enter value for name: JOHN GRISHAM
+Enter value for city: BERLIN
+Enter value for country: GERMANY
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1: INSERT INTO AUTHOR VALUES(3,'JOHN GRISHAM','BERLIN','GERMANY')
+INSERT INTO AUTHOR VALUES(3,'JOHN GRISHAM','BERLIN','GERMANY')
+            *
+ERROR at line 1:
+ORA-01401: inserted value too large for column
+
+
+SQL> /
+Enter value for authorid: 3
+Enter value for name: JOHN
+Enter value for city: BERLIN
+Enter value for country: GERMANY
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1: INSERT INTO AUTHOR VALUES(3,'JOHN','BERLIN','GERMANY')
+
+1 row created.
+
+SQL> /
+Enter value for authorid: 4
+Enter value for name: ROBERT
+Enter value for city: TEXAS
+Enter value for country: USA
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1: INSERT INTO AUTHOR VALUES(4,'ROBERT','TEXAS','USA')
+
+1 row created.
+
+SQL> /
+Enter value for authorid: 5
+Enter value for name: CHETAN
+Enter value for city: AHMEDABAD
+Enter value for country: INDIA
+old   1: INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1: INSERT INTO AUTHOR VALUES(5,'CHETAN','AHMEDABAD','INDIA')
+
+1 row created.
+
+SQL> SELECT * FROM AUTHOR;
+
+ AUTHORID NAME       CITY       COUNTRY
+--------- ---------- ---------- ----------
+        1 ROBIN COOK TEXAS      USA
+        3 JOHN       BERLIN     GERMANY
+        4 ROBERT     TEXAS      USA
+        5 CHETAN     AHMEDABAD  INDIA
+
+SQL>  INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY');
+Enter value for authorid: 2
+Enter value for name: SIDNEY
+Enter value for city: CALIFRONIA
+Enter value for country: USA
+old   1:  INSERT INTO AUTHOR VALUES(&AUTHORID,'&NAME','&CITY','&COUNTRY')
+new   1:  INSERT INTO AUTHOR VALUES(2,'SIDNEY','CALIFRONIA','USA')
+
+1 row created.
+
+SQL> SELECT * FROM AUTHOR;
+
+ AUTHORID NAME       CITY       COUNTRY
+--------- ---------- ---------- ----------
+        1 ROBIN COOK TEXAS      USA
+        3 JOHN       BERLIN     GERMANY
+        4 ROBERT     TEXAS      USA
+        5 CHETAN     AHMEDABAD  INDIA
+        2 SIDNEY     CALIFRONIA USA
+
+SQL> INSERT INTO PUBLISHER VALUES(&PID,'&NAME',
+  2  '&CITY','&COUNTRY');
+Enter value for pid: 11
+Enter value for name: RUPA
+old   1: INSERT INTO PUBLISHER VALUES(&PID,'&NAME',
+new   1: INSERT INTO PUBLISHER VALUES(11,'RUPA',
+Enter value for city: BLORE
+Enter value for country: INDIA
+old   2: '&CITY','&COUNTRY')
+new   2: 'BLORE','INDIA')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 22
+Enter value for name: SAPNA
+old   1: INSERT INTO PUBLISHER VALUES(&PID,'&NAME',
+new   1: INSERT INTO PUBLISHER VALUES(22,'SAPNA',
+Enter value for city: MYSORE
+Enter value for country: INDIA
+old   2: '&CITY','&COUNTRY')
+new   2: 'MYSORE','INDIA')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 33
+Enter value for name: TECH
+old   1: INSERT INTO PUBLISHER VALUES(&PID,'&NAME',
+new   1: INSERT INTO PUBLISHER VALUES(33,'TECH',
+Enter value for city: MLORE
+Enter value for country: INDIA
+old   2: '&CITY','&COUNTRY')
+new   2: 'MLORE','INDIA')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 44
+Enter value for name: MACMILLAN
+old   1: INSERT INTO PUBLISHER VALUES(&PID,'&NAME',
+new   1: INSERT INTO PUBLISHER VALUES(44,'MACMILLAN',
+Enter value for city: BLORE
+Enter value for country: INDIA
+old   2: '&CITY','&COUNTRY')
+new   2: 'BLORE','INDIA')
+
+1 row created.
+
+SQL> /
+Enter value for pid: 55
+Enter value for name: PAN
+old   1: INSERT INTO PUBLISHER VALUES(&PID,'&NAME',
+new   1: INSERT INTO PUBLISHER VALUES(55,'PAN',
+Enter value for city: MYSORE
+Enter value for country: INDIA
+old   2: '&CITY','&COUNTRY')
+new   2: 'MYSORE','INDIA')
+
+1 row created.
+
+SQL> SELECT * FROM PULISHER;
+SELECT * FROM PULISHER
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM PUBLISHER;
+
+    PUBID NAME       CITY       COUNTRY
+--------- ---------- ---------- ----------
+       11 RUPA       BLORE      INDIA
+       22 SAPNA      MYSORE     INDIA
+       33 TECH       MLORE      INDIA
+       44 MACMILLAN  BLORE      INDIA
+       55 PAN        MYSORE     INDIA
+
+SQL> INSERT INTO CATOGORY VALUES(&CID,'&DESCRIPTION');
+Enter value for cid: 111
+Enter value for description: MEDICAL
+old   1: INSERT INTO CATOGORY VALUES(&CID,'&DESCRIPTION')
+new   1: INSERT INTO CATOGORY VALUES(111,'MEDICAL')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 222
+Enter value for description: HORROR
+old   1: INSERT INTO CATOGORY VALUES(&CID,'&DESCRIPTION')
+new   1: INSERT INTO CATOGORY VALUES(222,'HORROR')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 333
+Enter value for description: FICTION
+old   1: INSERT INTO CATOGORY VALUES(&CID,'&DESCRIPTION')
+new   1: INSERT INTO CATOGORY VALUES(333,'FICTION')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 444
+Enter value for description: SCIENCE
+old   1: INSERT INTO CATOGORY VALUES(&CID,'&DESCRIPTION')
+new   1: INSERT INTO CATOGORY VALUES(444,'SCIENCE')
+
+1 row created.
+
+SQL> 555
+SP2-0226: Invalid line number
+SQL> /
+Enter value for cid: 555
+Enter value for description: NONFICTION
+old   1: INSERT INTO CATOGORY VALUES(&CID,'&DESCRIPTION')
+new   1: INSERT INTO CATOGORY VALUES(555,'NONFICTION')
+
+1 row created.
+
+SQL> SELECT * FROM CATOGORY;
+
+      CID DESCRIPTIO
+--------- ----------
+      111 MEDICAL
+      222 HORROR
+      333 FICTION
+      444 SCIENCE
+      555 NONFICTION
+
+SQL> INSERT INTO CATOLOG VALUES(&BID,'&TITLE',&AID,
+  2  &PID,&CID,&YEAR,&PRICE);
+Enter value for bid: 6
+Enter value for title: critical
+Enter value for aid: 1
+old   1: INSERT INTO CATOLOG VALUES(&BID,'&TITLE',&AID,
+new   1: INSERT INTO CATOLOG VALUES(6,'critical',1,
+Enter value for pid: 22
+Enter value for cid: 333
+Enter value for year: 2008
+Enter value for price: 300
+old   2: &PID,&CID,&YEAR,&PRICE)
+new   2: 22,333,2008,300)
+INSERT INTO CATOLOG VALUES(6,'critical',1,
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from catolog;
+select * from catolog
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> INSERT INTO CATaLOG VALUES(&BID,'&TITLE',&AID,
+  2   &PID,&CID,&YEAR,&PRICE);
+Enter value for bid: 6
+Enter value for title: critical
+Enter value for aid: 1
+old   1: INSERT INTO CATaLOG VALUES(&BID,'&TITLE',&AID,
+new   1: INSERT INTO CATaLOG VALUES(6,'critical',1,
+Enter value for pid: 22
+Enter value for cid: 333
+Enter value for year: 2008
+Enter value for price: 300
+old   2:  &PID,&CID,&YEAR,&PRICE)
+new   2:  22,333,2008,300)
+INSERT INTO CATaLOG VALUES(6,'critical',1,
+            *
+ERROR at line 1:
+ORA-00913: too many values
+
+
+SQL> INSERT INTO CATaLOG VALUES(&BID,'&TITLE',&AID,
+  2  kj,iom;
+Enter value for bid: kml;
+Enter value for title: ;
+Enter value for aid: l
+old   1: INSERT INTO CATaLOG VALUES(&BID,'&TITLE',&AID,
+new   1: INSERT INTO CATaLOG VALUES(kml;,';',l,
+INSERT INTO CATaLOG VALUES(kml;,';',l,
+                              *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL>  INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AID,
+  2  &PID,&CID,&YEAR,&PRICE);
+Enter value for bid: 6
+Enter value for title: CRITICAL
+Enter value for aid: 1
+old   1:  INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AID,
+new   1:  INSERT INTO CATALOG VALUES(6,'CRITICAL',1,
+Enter value for pid: 22
+Enter value for cid: 333
+Enter value for year: 2008
+Enter value for price: 300
+old   2: &PID,&CID,&YEAR,&PRICE)
+new   2: 22,333,2008,300)
+ INSERT INTO CATALOG VALUES(6,'CRITICAL',1,
+             *
+ERROR at line 1:
+ORA-00913: too many values
+
+
+SQL> DESC CATALOG;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ BID                                                   NOT NULL NUMBER(5)
+ TITLE                                                          VARCHAR2(10)
+ AUTHORID                                                       NUMBER(5)
+ PUBID                                                          NUMBER(5)
+ CID                                                            NUMBER(5)
+ YEAR                                                           NUMBER(5)
+
+SQL>  INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+  2  ;
+Enter value for bid: L;P
+Enter value for title: ;;
+Enter value for authorid: ;;
+old   1:  INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+new   1:  INSERT INTO CATALOG VALUES(L;P,';;',;;,
+ INSERT INTO CATALOG VALUES(L;P,';;',;;,
+                             *
+ERROR at line 1:
+ORA-00911: invalid character
+
+
+SQL> ALTER TABLE CATALOG ADD(PRICE NUMBEER(5));
+ALTER TABLE CATALOG ADD(PRICE NUMBEER(5))
+                                     *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ALTER TABLE CATALOG ADD(PRICE NUMBER(5));
+
+Table altered.
+
+SQL> SELECT * FROM CATALOG;
+
+no rows selected
+
+SQL> DESC CATALOG;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ BID                                                   NOT NULL NUMBER(5)
+ TITLE                                                          VARCHAR2(10)
+ AUTHORID                                                       NUMBER(5)
+ PUBID                                                          NUMBER(5)
+ CID                                                            NUMBER(5)
+ YEAR                                                           NUMBER(5)
+ PRICE                                                          NUMBER(5)
+
+SQL> INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+  2  &PUBID,&CID,&YEAR,&PRICE);
+Enter value for bid: 6
+Enter value for title: CRITICAL
+Enter value for authorid: 1
+old   1: INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+new   1: INSERT INTO CATALOG VALUES(6,'CRITICAL',1,
+Enter value for pubid: 22
+Enter value for cid: 333
+Enter value for year: 2008
+Enter value for price: 300
+old   2: &PUBID,&CID,&YEAR,&PRICE)
+new   2: 22,333,2008,300)
+
+1 row created.
+
+SQL> /
+Enter value for bid: 7
+Enter value for title: MIDNIGHT
+Enter value for authorid: 4
+old   1: INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+new   1: INSERT INTO CATALOG VALUES(7,'MIDNIGHT',4,
+Enter value for pubid: 44
+Enter value for cid: 111
+Enter value for year: 1999
+Enter value for price: 270
+old   2: &PUBID,&CID,&YEAR,&PRICE)
+new   2: 44,111,1999,270)
+
+1 row created.
+
+SQL> /
+Enter value for bid: 8
+Enter value for title: APPEAL
+Enter value for authorid: 5
+old   1: INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+new   1: INSERT INTO CATALOG VALUES(8,'APPEAL',5,
+Enter value for pubid: 22
+Enter value for cid: 222
+Enter value for year: 2000
+Enter value for price: 200
+old   2: &PUBID,&CID,&YEAR,&PRICE)
+new   2: 22,222,2000,200)
+
+1 row created.
+
+SQL> /
+Enter value for bid: 4
+Enter value for title: FEVER
+Enter value for authorid: 1
+old   1: INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+new   1: INSERT INTO CATALOG VALUES(4,'FEVER',1,
+Enter value for pubid: 44
+Enter value for cid: 333
+Enter value for year: 2001
+Enter value for price: 400
+old   2: &PUBID,&CID,&YEAR,&PRICE)
+new   2: 44,333,2001,400)
+
+1 row created.
+
+SQL> /
+Enter value for bid: 10
+Enter value for title: MISTAKES
+Enter value for authorid: 5
+old   1: INSERT INTO CATALOG VALUES(&BID,'&TITLE',&AUTHORID,
+new   1: INSERT INTO CATALOG VALUES(10,'MISTAKES',5,
+Enter value for pubid: 11
+Enter value for cid: 444
+Enter value for year: 2008
+Enter value for price: 95
+old   2: &PUBID,&CID,&YEAR,&PRICE)
+new   2: 11,444,2008,95)
+
+1 row created.
+
+SQL> SELECT * FROM CATALOG;
+
+      BID TITLE       AUTHORID     PUBID       CID      YEAR     PRICE
+--------- ---------- --------- --------- --------- --------- ---------
+        6 CRITICAL           1        22       333      2008       300
+        7 MIDNIGHT           4        44       111      1999       270
+        8 APPEAL             5        22       222      2000       200
+        4 FEVER              1        44       333      2001       400
+       10 MISTAKES           5        11       444      2008        95
+
+SQL> INSERT INTO ORDER_DETAILS VALUES(&ONO,
+  2  &BID,&QUANTITY);
+Enter value for ono: 1111
+old   1: INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1: INSERT INTO ORDER_DETAILS VALUES(1111,
+Enter value for bid: 6
+Enter value for quantity: 12
+old   2: &BID,&QUANTITY)
+new   2: 6,12)
+
+1 row created.
+
+SQL> /
+Enter value for ono: 2222
+old   1: INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1: INSERT INTO ORDER_DETAILS VALUES(2222,
+Enter value for bid: 7
+Enter value for quantity: 33
+old   2: &BID,&QUANTITY)
+new   2: 7,33)
+
+1 row created.
+
+SQL> /
+Enter value for ono: 3333
+old   1: INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1: INSERT INTO ORDER_DETAILS VALUES(3333,
+Enter value for bid: 9
+Enter value for quantity: 44
+old   2: &BID,&QUANTITY)
+new   2: 9,44)
+INSERT INTO ORDER_DETAILS VALUES(3333,
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C005954) violated - parent key not found
+
+
+SQL> 4444
+SP2-0226: Invalid line number
+SQL> /
+Enter value for ono: 4444
+old   1: INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1: INSERT INTO ORDER_DETAILS VALUES(4444,
+Enter value for bid: 10
+Enter value for quantity: 45
+old   2: &BID,&QUANTITY)
+new   2: 10,45)
+
+1 row created.
+
+SQL> /
+Enter value for ono: 1111
+old   1: INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1: INSERT INTO ORDER_DETAILS VALUES(1111,
+Enter value for bid: 9
+Enter value for quantity: 75
+old   2: &BID,&QUANTITY)
+new   2: 9,75)
+INSERT INTO ORDER_DETAILS VALUES(1111,
+            *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C005954) violated - parent key not found
+
+
+SQL> SELECT * FROM CATALOG;
+
+      BID TITLE       AUTHORID     PUBID       CID      YEAR     PRICE
+--------- ---------- --------- --------- --------- --------- ---------
+        6 CRITICAL           1        22       333      2008       300
+        7 MIDNIGHT           4        44       111      1999       270
+        8 APPEAL             5        22       222      2000       200
+        4 FEVER              1        44       333      2001       400
+       10 MISTAKES           5        11       444      2008        95
+
+SQL> UPDATE CATALOG SET BID=9
+  2  WHERE TITLE='FEVER';
+
+1 row updated.
+
+SQL> SELECT * FROM CATALOG;
+
+      BID TITLE       AUTHORID     PUBID       CID      YEAR     PRICE
+--------- ---------- --------- --------- --------- --------- ---------
+        6 CRITICAL           1        22       333      2008       300
+        7 MIDNIGHT           4        44       111      1999       270
+        8 APPEAL             5        22       222      2000       200
+        9 FEVER              1        44       333      2001       400
+       10 MISTAKES           5        11       444      2008        95
+
+SQL>  INSERT INTO ORDER_DETAILS VALUES(&ONO,
+  2   &BID,&QUANTITY);
+Enter value for ono: 1111
+old   1:  INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1:  INSERT INTO ORDER_DETAILS VALUES(1111,
+Enter value for bid: 9
+Enter value for quantity: 75
+old   2:  &BID,&QUANTITY)
+new   2:  9,75)
+
+1 row created.
+
+SQL> SELECT * FROM ORDER_DETAILS;
+
+      ONO       BID  QUANTITY
+--------- --------- ---------
+     1111         6        12
+     2222         7        33
+     4444        10        45
+     1111         9        75
+
+SQL>  INSERT INTO ORDER_DETAILS VALUES(&ONO,
+  2   &BID,&QUANTITY);
+Enter value for ono: 3333
+old   1:  INSERT INTO ORDER_DETAILS VALUES(&ONO,
+new   1:  INSERT INTO ORDER_DETAILS VALUES(3333,
+Enter value for bid: 9
+Enter value for quantity: 44
+old   2:  &BID,&QUANTITY)
+new   2:  9,44)
+
+1 row created.
+
+SQL> SELECT * FROM ORDER_DETAILS;
+
+      ONO       BID  QUANTITY
+--------- --------- ---------
+     1111         6        12
+     2222         7        33
+     4444        10        45
+     1111         9        75
+     3333         9        44
+
+SQL> SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2  FROM AUTHOR,CATALOG
+  3  WHERE AUTHOR.AID=CATALOG.AID AND
+  4  PRICE>(SELECT AVG(PRICE) FROM CATALOG)
+  5  AND YEAR>2000
+  6  GROUP BY AUTHOR.AUTHORID
+  7  HAVING COUNT(*)>=2;
+WHERE AUTHOR.AID=CATALOG.AID AND
+                         *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2  FROM AUTHOR,CATALOg
+  3  JYH;
+SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL>  SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2   FROM AUTHOR,CATALOG
+  3  WHERE AUTHOR.AUTHORID=CATALOG.AID AND
+  4  BG;
+BG
+ *
+ERROR at line 4:
+ORA-00920: invalid relational operator
+
+
+SQL> SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2  FROM AUTHOR,CATALOG
+  3  WHERE AUTHOR.AUTHORID=CATALOG.AUTJOID AND
+  4  PRICE>(SELECT AVG(PRICE) FROM CATALOG)
+  5  AND YEAR>2000
+  6  GROUP BY AUTHOR.AUTHORID
+  7  HAVING COUNT(*)>=2;
+WHERE AUTHOR.AUTHORID=CATALOG.AUTJOID AND
+                              *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2  FROM AUTHOR,CATALOG
+  3  WHERE AUTHOR.AUTHORID=CATALOG.AUTHOEID AND
+  4  ;
+
+*
+ERROR at line 4:
+ORA-00921: unexpected end of SQL command
+
+
+SQL>  SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2   FROM AUTHOR,CATALOGWHERE AUTHOR.AUTHORID=CATALOG.AUTHORID
+  3  AND  PRICE>(SELECT AVG(PRICE) FROM CATALOG)
+  4   AND YEAR>2000
+  5   GROUP BY AUTHOR.AUTHORID
+  6   HAVING COUNT(*)>=2;
+ FROM AUTHOR,CATALOGWHERE AUTHOR.AUTHORID=CATALOG.AUTHORID
+                                *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> 
+SQL> SELECT AUTHOR.AUTHORID,COUNT(AUTHOR.AUTHORID)
+  2  FROM AUTHOR,CATALOG WHERE AUTHOR.AUTHORID=
+  3  CATALOG.AUTHORID  AND  PRICE>
+  4  (SELECT AVG(PRICE) FROM CATALOG)
+  5   AND YEAR>2000
+  6   GROUP BY AUTHOR.AUTHORID
+  7   HAVING COUNT(*)>=2;
+
+ AUTHORID COUNT(AUTHOR.AUTHORID)
+--------- ----------------------
+        1                      2
+
+SQL> SELECT DISTINCT NAME FROM
+  2  AUTHOR,CATALOG,ORDER_DETAILS
+  3  WHERE AUTHOR.AUTHOID=CATALOG.AUTHORID AND
+  4  CATALOG.BID=ORDER_DETAILS.BID AND
+  5  ORDER_DETAILS.BID IN(
+  6  SELECT BID FROM ORDER_DETAILS
+  7  GROUP BY BID
+  8  HAVING SUM(QUANTITY)=(
+  9  SELECT MAX(SUM(QUANTITY))
+ 10  FROM ORDER_DETAILS
+ 11  GROUP BY BID));
+WHERE AUTHOR.AUTHOID=CATALOG.AUTHORID AND
+             *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> SELECT DISTINCT NAME FROM
+  2  AUTHOR,CATALOG,ORDER_DETAILS
+  3  WHERE AUTHOR.AUTHORID=CATALOG.AUTHORID AND
+  4   CATALOG.BID=ORDER_DETAILS.BID AND
+  5   ORDER_DETAILS.BID IN(
+  6   SELECT BID FROM ORDER_DETAILS
+  7   GROUP BY BID
+  8   HAVING SUM(QUANTITY)=(
+  9   SELECT MAX(SUM(QUANTITY))
+ 10   FROM ORDER_DETAILS
+ 11   GROUP BY BID));
+
+NAME
+----------
+ROBIN COOK
+
+SQL> UPDATE CATALOG SET PRICE=
+  2  PRICE+PRICE*0.1
+  3  WHERE PID=(
+  4  SELECT PID FROM PUBLISHER WHERE
+  5  PUBLISHER.NAME='SAPNA');
+WHERE PID=(
+      *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> UPDATE CATALOG SET PRICE=
+  2  PRICE+PRICE*0.1;
+
+5 rows updated.
+
+SQL> UPDATE CATALOG SET PRICE=
+  2  PRICE+PRICE*0.1
+  3  WHERE PUBID=(
+  4  SELECT PUBID FROM PUBLISHER WHERE
+  5  PUBLISHER.NAME='SAPNA');
+
+2 rows updated.
+
+SQL> 

@@ -1,0 +1,705 @@
+SQL> progm 5
+SP2-0042: unknown command "progm 5" - rest of line ignored.
+SQL> create table branch(bname varchar(10),bcity varchar(10),assets number(10,5),primary key(bname))
+;
+
+Table created.
+
+SQL> create table account(accno number(5),bname varchar(10),
+  2  BALANCE NUMBER(10,5),PRIMARY KEY(ACCNO),
+  3  FOREIGN KEY(BNAME) REFERENCES BRANCH(BNAME));
+
+Table created.
+
+SQL> CREATE TABLE CUST(CNAME VARCHAR(10),
+  2  CSTRT VARCHAR(10),CCITY VARCHAR(10),PRIMARY KEY(CNAME));
+
+Table created.
+
+SQL> CREATE TABLE DEPOSITOR(CNMAE VARCHAR(10),ACCNO NUMBER(5),PRIMARY KEY(CNAME,
+  2  ACCNO),FOREIGN KEY(CNAME) REFERENCES CUST(CNAME),
+  3  FOREIGN KEY(ACCNO) REFERENCES ACCOUNT(ACCNO)
+  4  ON DELETE CASCADE);
+CREATE TABLE DEPOSITOR(CNMAE VARCHAR(10),ACCNO NUMBER(5),PRIMARY KEY(CNAME,
+                                                                     *
+ERROR at line 1:
+ORA-00904: invalid column name
+
+
+SQL> CREATE TABLE DEPOSITOR(CNMAE VARCHAR(10),ACCNO NUMBER(5),
+  2  PRIMARY KEY(CNAME, ACCNO),FOREIGN KEY(CNAME) REFERENCES CUST(CNAME),
+  3   FOREIGN KEY(ACCNO) REFERENCES ACCOUNT(ACCNO)
+  4   ON DELETE CASCADE);
+PRIMARY KEY(CNAME, ACCNO),FOREIGN KEY(CNAME) REFERENCES CUST(CNAME),
+            *
+ERROR at line 2:
+ORA-00904: invalid column name
+
+
+SQL>  CREATE TABLE DEPOSITOR(CNAME VARCHAR(10),ACCNO NUMBER(5),
+  2   PRIMARY KEY(CNAME, ACCNO),FOREIGN KEY(CNAME) REFERENCES CUST(CNAME),
+  3    FOREIGN KEY(ACCNO) REFERENCES ACCOUNT(ACCNO)
+  4    ON DELETE CASCADE);
+
+Table created.
+
+SQL> CREATE TABLE LOAN(LNO NUMBER(10),BNAME VARCHAR(10),
+  2  AMT NUMBER(10,5),PRIMARY KEY(LNO),
+  3  FOREIGN KEY(BNAME) REFERENCES BRANCH(BNAME));
+
+Table created.
+
+SQL> CREATE TABLE BORROWER(CNAME VARCHAR(10),LNO
+  2  NUMBER(10),PRIMARY KEY(CNAME,LNO),
+  3  FOREIGN KEY(CNAME) REFERENCES CUST(CNAME),
+  4  FOREIGN KEY(LNO) REFERENCES LOAN(LNO));
+
+Table created.
+
+SQL> INSERT INTO BRANCH VALUES('&BNAME'),'&BCITY',&ASSETS);
+Enter value for bname: SRINAGAR
+Enter value for bcity: BLORE
+Enter value for assets: 100000
+old   1: INSERT INTO BRANCH VALUES('&BNAME'),'&BCITY',&ASSETS)
+new   1: INSERT INTO BRANCH VALUES('SRINAGAR'),'BLORE',100000)
+INSERT INTO BRANCH VALUES('SRINAGAR'),'BLORE',100000)
+                                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL>  INSERT INTO BRANCH VALUES('&BNAME','&BCITY',&ASSETS);
+Enter value for bname: SRINAGAR
+Enter value for bcity: BLORE
+Enter value for assets: 10000
+old   1:  INSERT INTO BRANCH VALUES('&BNAME','&BCITY',&ASSETS)
+new   1:  INSERT INTO BRANCH VALUES('SRINAGAR','BLORE',10000)
+
+1 row created.
+
+SQL> /
+Enter value for bname: KORMANGALA
+Enter value for bcity: MYSORE
+Enter value for assets: 20000
+old   1:  INSERT INTO BRANCH VALUES('&BNAME','&BCITY',&ASSETS)
+new   1:  INSERT INTO BRANCH VALUES('KORMANGALA','MYSORE',20000)
+
+1 row created.
+
+SQL> /
+Enter value for bname: BGUDI
+Enter value for bcity: MYSORE
+Enter value for assets: 30000
+old   1:  INSERT INTO BRANCH VALUES('&BNAME','&BCITY',&ASSETS)
+new   1:  INSERT INTO BRANCH VALUES('BGUDI','MYSORE',30000)
+
+1 row created.
+
+SQL> /
+Enter value for bname: JPNAGAR
+Enter value for bcity: BLORE
+Enter value for assets: 12000
+old   1:  INSERT INTO BRANCH VALUES('&BNAME','&BCITY',&ASSETS)
+new   1:  INSERT INTO BRANCH VALUES('JPNAGAR','BLORE',12000)
+
+1 row created.
+
+SQL> /
+Enter value for bname: JAYANAGAR
+Enter value for bcity: MYSORE
+Enter value for assets: 22000
+old   1:  INSERT INTO BRANCH VALUES('&BNAME','&BCITY',&ASSETS)
+new   1:  INSERT INTO BRANCH VALUES('JAYANAGAR','MYSORE',22000)
+
+1 row created.
+
+SQL> SELECT * FROM BRANCH;
+
+BNAME      BCITY         ASSETS
+---------- ---------- ---------
+SRINAGAR   BLORE          10000
+KORMANGALA MYSORE         20000
+BGUDI      MYSORE         30000
+JPNAGAR    BLORE          12000
+JAYANAGAR  MYSORE         22000
+
+SQL> INSERT INTO ACCOUNT VALUES(&ACCNO,&BNAME,&BALANCE);
+Enter value for accno: 1
+Enter value for bname: SRINAGAR
+Enter value for balance: 2000
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,&BNAME,&BALANCE)
+new   1: INSERT INTO ACCOUNT VALUES(1,SRINAGAR,2000)
+INSERT INTO ACCOUNT VALUES(1,SRINAGAR,2000)
+                             *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME','&BALANCE');
+Enter value for accno: 1
+Enter value for bname: SRINAGARKJLK5
+Enter value for balance: 544RFVB3
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME','&BALANCE')
+new   1: INSERT INTO ACCOUNT VALUES(1,'SRINAGARKJLK5','544RFVB3')
+INSERT INTO ACCOUNT VALUES(1,'SRINAGARKJLK5','544RFVB3')
+                                             *
+ERROR at line 1:
+ORA-01401: inserted value too large for column
+
+
+SQL> INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME',&BALANCE);
+Enter value for accno: 1
+Enter value for bname: SRINAGAR
+Enter value for balance: 2000
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME',&BALANCE)
+new   1: INSERT INTO ACCOUNT VALUES(1,'SRINAGAR',2000)
+
+1 row created.
+
+SQL> /
+Enter value for accno: 2
+Enter value for bname: SRINAGAR
+Enter value for balance: 3000
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME',&BALANCE)
+new   1: INSERT INTO ACCOUNT VALUES(2,'SRINAGAR',3000)
+
+1 row created.
+
+SQL> /
+Enter value for accno: 3
+Enter value for bname: SRINAGAR
+Enter value for balance: 4000
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME',&BALANCE)
+new   1: INSERT INTO ACCOUNT VALUES(3,'SRINAGAR',4000)
+
+1 row created.
+
+SQL> /
+Enter value for accno: 4
+Enter value for bname: KORMANGALA
+Enter value for balance: 5000
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME',&BALANCE)
+new   1: INSERT INTO ACCOUNT VALUES(4,'KORMANGALA',5000)
+
+1 row created.
+
+SQL> /
+Enter value for accno: 5
+Enter value for bname: SRINAGAR
+Enter value for balance: 6000
+old   1: INSERT INTO ACCOUNT VALUES(&ACCNO,'&BNAME',&BALANCE)
+new   1: INSERT INTO ACCOUNT VALUES(5,'SRINAGAR',6000)
+
+1 row created.
+
+SQL> SELECT * FROM ACCOUNT;
+
+    ACCNO BNAME        BALANCE
+--------- ---------- ---------
+        1 SRINAGAR        2000
+        2 SRINAGAR        3000
+        3 SRINAGAR        4000
+        4 KORMANGALA      5000
+        5 SRINAGAR        6000
+
+SQL> INSERT INTO CUST VALUES('&CNAME','&CSTRT','&CITY');
+Enter value for cname: NANDITA
+Enter value for cstrt: VIDYAPEETA
+Enter value for city: BLORE
+old   1: INSERT INTO CUST VALUES('&CNAME','&CSTRT','&CITY')
+new   1: INSERT INTO CUST VALUES('NANDITA','VIDYAPEETA','BLORE')
+
+1 row created.
+
+SQL> /
+Enter value for cname: JASMI
+Enter value for cstrt: JOHN PAUL
+Enter value for city: BLORE
+old   1: INSERT INTO CUST VALUES('&CNAME','&CSTRT','&CITY')
+new   1: INSERT INTO CUST VALUES('JASMI','JOHN PAUL','BLORE')
+
+1 row created.
+
+SQL> /
+Enter value for cname: NAMRATHA
+Enter value for cstrt: TSF
+Enter value for city: BLORE
+old   1: INSERT INTO CUST VALUES('&CNAME','&CSTRT','&CITY')
+new   1: INSERT INTO CUST VALUES('NAMRATHA','TSF','BLORE')
+
+1 row created.
+
+SQL> /
+Enter value for cname: GEETHA
+Enter value for cstrt: SRINAGAR
+Enter value for city: BLORE
+old   1: INSERT INTO CUST VALUES('&CNAME','&CSTRT','&CITY')
+new   1: INSERT INTO CUST VALUES('GEETHA','SRINAGAR','BLORE')
+
+1 row created.
+
+SQL> /
+Enter value for cname: ASHWINI
+Enter value for cstrt: ULSOOR
+Enter value for city: BLORE
+old   1: INSERT INTO CUST VALUES('&CNAME','&CSTRT','&CITY')
+new   1: INSERT INTO CUST VALUES('ASHWINI','ULSOOR','BLORE')
+
+1 row created.
+
+SQL> SELECT * FROM CUST;
+
+CNAME      CSTRT      CCITY
+---------- ---------- ----------
+NANDITA    VIDYAPEETA BLORE
+JASMI      JOHN PAUL  BLORE
+NAMRATHA   TSF        BLORE
+GEETHA     SRINAGAR   BLORE
+ASHWINI    ULSOOR     BLORE
+
+SQL>  INSERT INTO DEPOSITOR VALUES('&CNAME','&ACCNO');
+Enter value for cname: NAMRATHA
+Enter value for accno: 1
+old   1:  INSERT INTO DEPOSITOR VALUES('&CNAME','&ACCNO')
+new   1:  INSERT INTO DEPOSITOR VALUES('NAMRATHA','1')
+
+1 row created.
+
+SQL> /
+Enter value for cname: NANDITA
+Enter value for accno: 1
+old   1:  INSERT INTO DEPOSITOR VALUES('&CNAME','&ACCNO')
+new   1:  INSERT INTO DEPOSITOR VALUES('NANDITA','1')
+
+1 row created.
+
+SQL> /
+Enter value for cname: ASHWINI
+Enter value for accno: 5
+old   1:  INSERT INTO DEPOSITOR VALUES('&CNAME','&ACCNO')
+new   1:  INSERT INTO DEPOSITOR VALUES('ASHWINI','5')
+
+1 row created.
+
+SQL> /
+Enter value for cname: JASMI
+Enter value for accno: 3
+old   1:  INSERT INTO DEPOSITOR VALUES('&CNAME','&ACCNO')
+new   1:  INSERT INTO DEPOSITOR VALUES('JASMI','3')
+
+1 row created.
+
+SQL> /
+Enter value for cname: NANDITA
+Enter value for accno: 5
+old   1:  INSERT INTO DEPOSITOR VALUES('&CNAME','&ACCNO')
+new   1:  INSERT INTO DEPOSITOR VALUES('NANDITA','5')
+
+1 row created.
+
+SQL> SELECT * FROM DEPOSITOR;
+
+CNAME          ACCNO
+---------- ---------
+NAMRATHA           1
+NANDITA            1
+ASHWINI            5
+JASMI              3
+NANDITA            5
+
+SQL> INERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT);
+SP2-0042: unknown command beginning "INERT INTO..." - rest of line ignored.
+SQL> INSERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT);
+Enter value for lno: 11
+Enter value for bname: BGUDI
+Enter value for amt: 20000
+old   1: INSERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT)
+new   1: INSERT INTO LOAN VALUES(11,'BGUDI',20000)
+
+1 row created.
+
+SQL> /
+Enter value for lno: 22
+Enter value for bname: KORMANGALA
+Enter value for amt: 25000
+old   1: INSERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT)
+new   1: INSERT INTO LOAN VALUES(22,'KORMANGALA',25000)
+
+1 row created.
+
+SQL> /
+Enter value for lno: 33
+Enter value for bname: BGUDI
+Enter value for amt: 10000
+old   1: INSERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT)
+new   1: INSERT INTO LOAN VALUES(33,'BGUDI',10000)
+
+1 row created.
+
+SQL> /
+Enter value for lno: 44
+Enter value for bname: KORMANGALA
+Enter value for amt: 30000
+old   1: INSERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT)
+new   1: INSERT INTO LOAN VALUES(44,'KORMANGALA',30000)
+
+1 row created.
+
+SQL> /
+Enter value for lno: 55
+Enter value for bname: SRINAGAR
+Enter value for amt: 10000
+old   1: INSERT INTO LOAN VALUES(&LNO,'&BNAME',&AMT)
+new   1: INSERT INTO LOAN VALUES(55,'SRINAGAR',10000)
+
+1 row created.
+
+SQL> SELECT * FROM LOAN;
+
+      LNO BNAME            AMT
+--------- ---------- ---------
+       11 BGUDI          20000
+       22 KORMANGALA     25000
+       33 BGUDI          10000
+       44 KORMANGALA     30000
+       55 SRINAGAR       10000
+
+SQL> INSERT INTO BORROWER VALUES('&CNAME',&LNO);
+Enter value for cname: NANDITA
+Enter value for lno: 33
+old   1: INSERT INTO BORROWER VALUES('&CNAME',&LNO)
+new   1: INSERT INTO BORROWER VALUES('NANDITA',33)
+
+1 row created.
+
+SQL> /
+Enter value for cname: NANDITA
+Enter value for lno: 11
+old   1: INSERT INTO BORROWER VALUES('&CNAME',&LNO)
+new   1: INSERT INTO BORROWER VALUES('NANDITA',11)
+
+1 row created.
+
+SQL> /
+Enter value for cname: JASMI
+Enter value for lno: 33
+old   1: INSERT INTO BORROWER VALUES('&CNAME',&LNO)
+new   1: INSERT INTO BORROWER VALUES('JASMI',33)
+
+1 row created.
+
+SQL> /
+Enter value for cname: NAMRATHA
+Enter value for lno: 44
+old   1: INSERT INTO BORROWER VALUES('&CNAME',&LNO)
+new   1: INSERT INTO BORROWER VALUES('NAMRATHA',44)
+
+1 row created.
+
+SQL> /
+Enter value for cname: JASMI
+Enter value for lno: 55
+old   1: INSERT INTO BORROWER VALUES('&CNAME',&LNO)
+new   1: INSERT INTO BORROWER VALUES('JASMI',55)
+
+1 row created.
+
+SQL> SELECT * FROM BORROWER;
+
+CNAME            LNO
+---------- ---------
+NANDITA           33
+NANDITA           11
+JASMI             33
+NAMRATHA          44
+JASMI             55
+
+SQL> SELECT CNAME FROM ACCOUNT,DEPOSITOR
+  2  WHERE DEPOSITOR.ACCNO=ACCOUNT.ACCNO
+  3  AND BNAME='SRINAGAR'
+  4  GROUP BY CNAME
+  5  HAVING COUNT(*)>=2;
+
+CNAME
+----------
+NANDITA
+
+SQL> SELECT CNMAE,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2  FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3  ACCCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4  BRANCH.BNMAE=ACCOUNT.BNAME AND
+  5  BCITY='BLORE'
+  6  GROUP BY CNAME HAVING
+  7  COUNT(DISTINCT(ACCOUNT.BNMAE))=
+  8  (SELECT COUNT(*) FROM BRANCH
+  9  WHERE BCITY='BLORE');
+COUNT(DISTINCT(ACCOUNT.BNMAE))=
+                       *
+ERROR at line 7:
+ORA-00904: invalid column name
+
+
+SQL> SELECT CNMAE,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2  FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3  ACCCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4  BRANCH.BNMAE=ACCOUNT.BNAME AND
+  5  BCITY='BLORE'
+  6  GROUP BY CNAME HAVING
+  7  COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8  (SELECT COUNT(*) FROM BRANCH
+  9  WHERE BCITY='BLORE');
+BRANCH.BNMAE=ACCOUNT.BNAME AND
+       *
+ERROR at line 4:
+ORA-00904: invalid column name
+
+
+SQL>  SELECT CNMAE,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2   FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3   ACCCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4  BRANCH.BNAME=ACCOUNT.BNAME AND
+  5   BCITY='BLORE'
+  6   GROUP BY CNAME HAVING
+  7   COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8   (SELECT COUNT(*) FROM BRANCH
+  9   WHERE BCITY='BLORE');
+ ACCCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+          *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> 
+SQL>  SELECT CNMAE,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2   FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3   ACCCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4  BRANCH.BNAME=ACCOUNT.BNAME AND
+  5   BCITY='BLORE'
+  6   GROUP BY CNAME HAVING
+  7   COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8   (SELECT COUNT(*) FROM BRANCH
+  9   WHERE BCITY='BLORE');
+ ACCCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+          *
+ERROR at line 3:
+ORA-00904: invalid column name
+
+
+SQL> 
+SQL>  SELECT CNMAE,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2   FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3  ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4   BRANCH.BNAME=ACCOUNT.BNAME AND
+  5    BCITY='BLORE'
+  6    GROUP BY CNAME HAVING
+  7    COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8    (SELECT COUNT(*) FROM BRANCH
+  9    WHERE BCITY='BLORE');
+ SELECT CNMAE,COUNT(DISTINCT(ACCOUNT.BNAME))
+        *
+ERROR at line 1:
+ORA-00904: invalid column name
+
+
+SQL> SELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2    FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3   ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4    BRANCH.BNAME=ACCOUNT.BNAME AND
+  5     BCITY='BLORE'
+  6     GROUP BY CNAME HAVING
+  7     COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8     (SELECT COUNT(*) FROM BRANCH
+  9     WHERE BCITY='BLORE');
+
+no rows selected
+
+SQL> ELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+SP2-0042: unknown command beginning "ELECT CNAM..." - rest of line ignored.
+SQL>  FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+SP2-0042: unknown command beginning "FROM BRANC..." - rest of line ignored.
+SQL> ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+SP2-0042: unknown command beginning "ACCOUNT.AC..." - rest of line ignored.
+SQL>  BRANCH.BNAME=ACCOUNT.BNAME AND
+SP2-0042: unknown command beginning "BRANCH.BNA..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL>   BCITY='BLORE'
+SP2-0042: unknown command beginning "BCITY='BLO..." - rest of line ignored.
+SQL>   GROUP BY CNAME HAVING
+SP2-0042: unknown command beginning "GROUP BY C..." - rest of line ignored.
+SQL>   COUNT(DISTINCT(ACCOUNT.BNAME))=;
+SP2-0042: unknown command beginning "COUNT(DIST..." - rest of line ignored.
+SQL> 
+SQL> SELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2    FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3   ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4    BRANCH.BNAME=ACCOUNT.BNAME AND
+  5     BCITY='BLORE'
+  6     GROUP BY CNAME HAVING
+  7  COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8  (SELECT BNAME FROM BRANCH
+  9    WHERE BCITY='BLORE');
+(SELECT BNAME FROM BRANCH
+ *
+ERROR at line 8:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> 
+SQL> SELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2    FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3   ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4    BRANCH.BNAME=ACCOUNT.BNAME AND
+  5     BCITY='BLORE'
+  6     GROUP BY CNAME HAVING
+  7     COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8     (SELECT COUNT(*) FROM BRANCH
+  9     WHERE BCITY='BLORE');
+
+no rows selected
+
+SQL> UPDATE ACCOUNT SET BNAME='JAMMU' WHERE
+  2  BALANCE=4000;
+UPDATE ACCOUNT SET BNAME='JAMMU' WHERE
+       *
+ERROR at line 1:
+ORA-02291: integrity constraint (CS075.SYS_C006677) violated - parent key not found
+
+
+SQL> 
+SQL> UPDATE ACCOUNT SET BNAME='KORMANGALA' WHERE
+  2  BALANCE=4000;
+
+1 row updated.
+
+SQL>  SELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2     FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3    ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4     BRANCH.BNAME=ACCOUNT.BNAME AND
+  5      BCITY='BLORE'
+  6      GROUP BY CNAME HAVING
+  7   COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8   (SELECT BNAME FROM BRANCH
+  9     WHERE BCITY='BLORE');
+ (SELECT BNAME FROM BRANCH
+  *
+ERROR at line 8:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL>  SELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2     FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3    ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4     BRANCH.BNAME=ACCOUNT.BNAME AND
+  5      BCITY='BLORE'
+  6      GROUP BY CNAME HAVING
+  7   COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8   (SELECT COUNT(*) FROM BRANCH
+  9   WHERE BCITY='BLORE');
+
+no rows selected
+
+SQL> UPDATE ACCOUNT SET BNAME='SRINAGAR'
+  2  WHERE BALANCE=4000;
+
+1 row updated.
+
+SQL> SELEVT * FROM ACCOUNT;
+SP2-0042: unknown command beginning "SELEVT * F..." - rest of line ignored.
+SQL> SELECT * FROM ACCOUNT;
+
+    ACCNO BNAME        BALANCE
+--------- ---------- ---------
+        1 SRINAGAR        2000
+        2 SRINAGAR        3000
+        3 SRINAGAR        4000
+        4 KORMANGALA      5000
+        5 SRINAGAR        6000
+
+SQL> SELECT * FROM BRANCH;
+
+BNAME      BCITY         ASSETS
+---------- ---------- ---------
+SRINAGAR   BLORE          10000
+KORMANGALA MYSORE         20000
+BGUDI      MYSORE         30000
+JPNAGAR    BLORE          12000
+JAYANAGAR  MYSORE         22000
+
+SQL> SELECT * FROM DEPOSITOR;
+
+CNAME          ACCNO
+---------- ---------
+NAMRATHA           1
+NANDITA            1
+ASHWINI            5
+JASMI              3
+NANDITA            5
+
+SQL> SELECT * FROM ACCOUNT;
+
+    ACCNO BNAME        BALANCE
+--------- ---------- ---------
+        1 SRINAGAR        2000
+        2 SRINAGAR        3000
+        3 SRINAGAR        4000
+        4 KORMANGALA      5000
+        5 SRINAGAR        6000
+
+SQL> SELECT * FROM CUST;
+
+CNAME      CSTRT      CCITY
+---------- ---------- ----------
+NANDITA    VIDYAPEETA BLORE
+JASMI      JOHN PAUL  BLORE
+NAMRATHA   TSF        BLORE
+GEETHA     SRINAGAR   BLORE
+ASHWINI    ULSOOR     BLORE
+
+SQL> INSERT INTO ACCOUNT VALUES(6,'JPNAGAR',23000);
+
+1 row created.
+
+SQL> INSERT INTO DEPOSITOR VALUES('NANDITA',6);
+
+1 row created.
+
+SQL>  SELECT CNAME,COUNT(DISTINCT(ACCOUNT.BNAME))
+  2     FROM BRANCH,DEPOSITOR,ACCOUNT WHERE
+  3    ACCOUNT.ACCNO=DEPOSITOR.ACCNO AND
+  4     BRANCH.BNAME=ACCOUNT.BNAME AND
+  5      BCITY='BLORE'
+  6      GROUP BY CNAME HAVING
+  7   COUNT(DISTINCT(ACCOUNT.BNAME))=
+  8   (SELECT COUNT(*) FROM BRANCH
+  9   WHERE BCITY='BLORE');
+
+CNAME      COUNT(DISTINCT(ACCOUNT.BNAME))
+---------- ------------------------------
+NANDITA                                 2
+
+SQL> DELETE .
+  2  ,;
+DELETE .
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> DELETE FROM ACCOUNT WHERE BNAME IN 
+  2  (SELECT BNAME FROM BRANCH
+  3  WHERE BCITY='BLORE');
+
+5 rows deleted.
+
+SQL> SELECT * FROM ACCOUNT;
+
+    ACCNO BNAME        BALANCE
+--------- ---------- ---------
+        4 KORMANGALA      5000
+
+SQL> SELECT * FROM DEPOSITOR;
+
+no rows selected
+
+SQL> 
